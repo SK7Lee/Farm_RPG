@@ -11,17 +11,33 @@ public class PlayerController : MonoBehaviour
     public float walkSpeed = 4f;
     public float runSpeed = 8f;
 
+    PlayerInteraction playerInteraction;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        
+        playerInteraction = GetComponentInChildren<PlayerInteraction>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Move();
+
+        Interact();
+    }
+
+    public void Interact()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            //Interact
+            playerInteraction.Interact();
+        }
     }
 
     public void Move()
