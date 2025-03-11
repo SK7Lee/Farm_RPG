@@ -3,11 +3,22 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;   
 
 
-public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     ItemData itemToDisplay;
 
     public Image itemDisplayImage;
+
+    //Type of inventory slot
+    public enum InventoryType
+    {
+        Tool,
+        Item
+    }
+
+    int slotIndex;
+
+    public InventoryType inventoryType;
     public void Display(ItemData itemToDisplay)
     {
         if (itemToDisplay != null) 
@@ -21,6 +32,12 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         itemDisplayImage.gameObject.SetActive(false);
     }
 
+    //Assign the index of the slot
+    public void AssignIndex(int slotIndex)
+    {
+        this.slotIndex = slotIndex;
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         UIManager.Instance.DisplayItemInfo(itemToDisplay);
@@ -29,6 +46,12 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerExit(PointerEventData eventData)
     {
         UIManager.Instance.DisplayItemInfo(null);
-
     }
+
+    public virtual void OnPointerClick(PointerEventData eventData)
+    {
+        InventoryManager.Instance.InventoryToHand(slotIndex, inventoryType);
+        Debug.Log("Clicked on " + itemToDisplay.name);
+    }
+
 }
