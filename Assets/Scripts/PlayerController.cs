@@ -29,6 +29,11 @@ public class PlayerController : MonoBehaviour
         Move();
 
         Interact();
+
+        if (Input.GetKey(KeyCode.RightBracket))
+        {
+            TimeManager.Instance.Tick();
+        }
     }
 
     public void Interact()

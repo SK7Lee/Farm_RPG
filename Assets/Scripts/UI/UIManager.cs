@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoBehaviour, ITimeTracker
 {
     public static UIManager Instance { get; private set; }
 
@@ -27,20 +27,25 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        //If there is more than one instance of this class, destroy the new one
         if (Instance != null && Instance != this)
         {
             Destroy(this);
         }
         else
         {
+            //Set the instance to this object
             Instance = this;
         }
     }
 
     private void Start()
     {
+        //Render the inventory screen to reflect the current inventory
         RenderInventory();
         AssignSlotIndex();
+
+        TimeManager.Instance.RegisterTracker(this);
     }
 
     public void AssignSlotIndex()
@@ -52,12 +57,17 @@ public class UIManager : MonoBehaviour
         }
     }
 
+
+    // Render the inventory screen to reflect the current inventory
     public void RenderInventory()
     {
+        //Get the inventory slots from the InventoryManager
         ItemData[] inventoryToolSlots = InventoryManager.Instance.tools;
         ItemData[] inventoryItemSlots = InventoryManager.Instance.items;
-        RenderInventoryPanel(inventoryToolSlots, toolSlots);
-        RenderInventoryPanel(inventoryItemSlots, itemSlots);
+
+        //Render the Tool section 
+        RenderInvertoryPanel(inventoryToolSlots, toolSlots);
+        RenderInvertoryPanel(inventoryItemSlots, itemSlots);
 
         toolHandSlot.Display(InventoryManager.Instance.equippedTool);
         itemHandSlot.Display(InventoryManager.Instance.equippedItem);
@@ -74,19 +84,21 @@ public class UIManager : MonoBehaviour
         }
 
         toolEquipSlot.gameObject.SetActive(false);
+
     }
 
-    void RenderInventoryPanel(ItemData[] slots, InventorySlot[] uiSlots)
+    void RenderInvertoryPanel(ItemData[] slots, InventorySlot[] uiSlots)
     {
-        for (int i = 0; i < uiSlots.Length; i++) 
+        for (int i = 0; i < uiSlots.Length; i++)
         {
             uiSlots[i].Display(slots[i]);
         }
     }
 
     public void ToggleInventoryPanel()
-    {        
+    {
         inventoryPanel.SetActive(!inventoryPanel.activeSelf);
+
         RenderInventory();
     }
 
@@ -96,11 +108,36 @@ public class UIManager : MonoBehaviour
         {
             itemNameText.text = "";
             itemDescriptionText.text = "";
+
             return;
         }
 
         itemNameText.text = data.name;
         itemDescriptionText.text = data.description;
+    }
+
+    public void ClockUpdate(GameTimestamp timestamp)
+    {
+        int hours = timestamp.hour;
+        int minutes = timestamp.minute;
+
+        string prefix = "AM ";
+
+        if (hours > 12)
+        {
+            prefix = "PM ";
+            hours -= 12;
+        }
+
+        timeText.text = prefix + hours + ":" + minutes.ToString("00");
+
+        //Handle the date
+        int day = timestamp.day;
+        string season = timestamp.season.ToString();
+        string dayOfTheWeek = timestamp.GetDayOfTheWeek().ToString();
+
+        dateText.text = season + " " + day + " (" + dayOfTheWeek + ")";
+
     }
 
 }

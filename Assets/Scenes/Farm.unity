@@ -2560,6 +2560,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1020823072}
+  - component: {fileID: 1020823074}
   - component: {fileID: 1020823071}
   - component: {fileID: 1020823073}
   m_Layer: 0
@@ -2630,8 +2631,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toolEquipSlot: {fileID: 356292}
-  timeText: {fileID: 0}
-  dateText: {fileID: 0}
+  timeText: {fileID: 1636072797}
+  dateText: {fileID: 627677684}
   inventoryPanel: {fileID: 771003422}
   toolHandSlot: {fileID: 1286191014}
   itemHandSlot: {fileID: 787720136}
@@ -2655,6 +2656,26 @@ MonoBehaviour:
   - {fileID: 541988745}
   itemNameText: {fileID: 1671458838}
   itemDescriptionText: {fileID: 980796136}
+--- !u!114 &1020823074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020823070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 322fda9bd8fadc84e9ba83da7a0a091b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timestamp:
+    year: 0
+    season: 0
+    day: 0
+    hour: 0
+    minute: 0
+  timeScale: 1
+  sunTransform: {fileID: 410087041}
 --- !u!1 &1048554138
 GameObject:
   m_ObjectHideFlags: 0
