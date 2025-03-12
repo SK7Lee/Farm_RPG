@@ -78,11 +78,18 @@ public class Land : MonoBehaviour, ITimeTracker
                     //Switch the land status to watered
                     SwitchLandStatus(LandStatus.Watered);
                     break;
+                case EquipmentData.ToolType.Shovel:
+                    if (cropPlanted != null)
+                    {
+                        Destroy(cropPlanted.gameObject);
+                    }
+                    break;
+
             }
             return;
         }
         SeedData seedTool = toolSlot as SeedData;
-        if (seedTool != null &&  landStatus!=LandStatus.Soil && cropPlanted==null) 
+        if (seedTool != null &&  landStatus != LandStatus.Soil && cropPlanted == null) 
         { 
             GameObject cropObject = Instantiate(cropPrefab, transform);
             cropObject.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
@@ -106,6 +113,13 @@ public class Land : MonoBehaviour, ITimeTracker
             if (hoursElapsed > 24)
             {
                 SwitchLandStatus(LandStatus.Farmland);
+            }
+        }
+        if (landStatus != LandStatus.Watered && cropPlanted != null)
+        {
+            if (cropPlanted.cropState != CropBehaviour.CropState.Seed)
+            {
+                cropPlanted.Wither();
             }
         }
     }
