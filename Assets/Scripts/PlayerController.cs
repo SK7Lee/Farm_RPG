@@ -43,6 +43,11 @@ public class PlayerController : MonoBehaviour
             //Interact
             playerInteraction.Interact();
         }
+
+        if (Input.GetButtonDown("Fire2")) 
+        { 
+            playerInteraction.ItemInteract();
+        }
     }
 
     public void Move()

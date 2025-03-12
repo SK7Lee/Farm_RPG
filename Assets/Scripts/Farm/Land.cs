@@ -14,6 +14,11 @@ public class Land : MonoBehaviour, ITimeTracker
     
     GameTimestamp timeWatered;
 
+    [Header("Crops")]
+    public GameObject cropPrefab;
+
+    CropBehaviour cropPlanted = null;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -76,6 +81,14 @@ public class Land : MonoBehaviour, ITimeTracker
             }
             return;
         }
+        SeedData seedTool = toolSlot as SeedData;
+        if (seedTool != null &&  landStatus!=LandStatus.Soil && cropPlanted==null) 
+        { 
+            GameObject cropObject = Instantiate(cropPrefab, transform);
+            cropObject.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+            cropPlanted = cropObject.GetComponent<CropBehaviour>();
+            cropPlanted.Plant(seedTool);
+        }
     }
 
     public void ClockUpdate(GameTimestamp timestamp)
@@ -85,6 +98,10 @@ public class Land : MonoBehaviour, ITimeTracker
             int hoursElapsed = GameTimestamp.CompareTimestamps(timeWatered, timestamp);
             Debug.Log("Hours Elapsed: " + hoursElapsed);
 
+            if (cropPlanted != null) 
+            {
+                cropPlanted.Grow();
+            }
           
             if (hoursElapsed > 24)
             {

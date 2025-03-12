@@ -6,6 +6,7 @@ public class PlayerInteraction : MonoBehaviour
 
     Land selectedLand = null;
 
+    InteractableObject selectedInteractable = null;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,7 +33,18 @@ public class PlayerInteraction : MonoBehaviour
             return;
         }
 
+        if (other.tag == "Item")
+        {
+            selectedInteractable = other.GetComponent<InteractableObject>();
+            return;
+        }
+
         //Deselect
+        if (selectedInteractable != null)
+        {
+            selectedInteractable = null;
+        }
+
         if (selectedLand != null)
         {
             selectedLand.Select(false);
@@ -52,6 +64,11 @@ public class PlayerInteraction : MonoBehaviour
 
     public void Interact()
     {
+        if (InventoryManager.Instance.equippedItem != null)
+        {
+            return;
+        }
+
         if (selectedLand != null)
         {
             selectedLand.Interact();
@@ -59,5 +76,20 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         Debug.Log("Not on any land");
+    }
+
+    public void ItemInteract()
+    {
+        if (InventoryManager.Instance.equippedItem!= null)
+        {
+            InventoryManager.Instance.HandToInventory(InventorySlot.InventoryType.Item);
+            return;
+        }
+
+        if (selectedInteractable != null)
+        {
+            selectedInteractable.Pickup();
+        }
+
     }
 }
