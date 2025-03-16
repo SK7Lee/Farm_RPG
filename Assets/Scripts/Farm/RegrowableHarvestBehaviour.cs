@@ -8,9 +8,9 @@ public class RegrowableHarvestBehaviour : InteractableObject
         this.parentCrop = parentCrop;
     }
     public override void Pickup()
-    {       
-    
-        InventoryManager.Instance.equippedItem = item;
+    {
+
+        InventoryManager.Instance.EquipHandSlot(item);
         InventoryManager.Instance.RenderHand();
         parentCrop.Regrow();
     }
