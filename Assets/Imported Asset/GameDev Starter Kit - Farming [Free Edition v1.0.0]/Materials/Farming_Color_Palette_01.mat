@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Farming_Color_Palette_01
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 10770, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -24,13 +24,9 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-<<<<<<< HEAD
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     - _AlphaTex:
 =======
-=======
->>>>>>> Stashed changes
 <<<<<<< HEAD
     - _BackTex:
         m_Texture: {fileID: 0}
@@ -40,15 +36,10 @@ Material:
 =======
     - _AlphaTex:
 >>>>>>> de35fce7d4ce2421e8c2a3b78643bd2790f3a179
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-=======
->>>>>>> parent of de35fce (Basic farm)
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -131,8 +122,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-<<<<<<< HEAD
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     - PixelSnap: 0
     - _BumpScale: 1
@@ -148,18 +137,6 @@ Material:
     - _BlendModePreserveSpecular: 1
     - _BlendOp: 0
     - _BumpScale: 1
-=======
-<<<<<<< HEAD
-    - _AO: 2.4
-    - _AddPrecomputedVelocity: 0
-    - _AlphaClip: 0
-    - _AlphaToMask: 0
-    - _BaseLight: 0.35
-    - _Blend: 0
-    - _BlendModePreserveSpecular: 1
-    - _BlendOp: 0
-    - _BumpScale: 1
->>>>>>> Stashed changes
     - _CameraFadingEnabled: 0
     - _CameraFarFadeDistance: 2
     - _CameraNearFadeDistance: 1
@@ -173,13 +150,7 @@ Material:
     - _BumpScale: 1
     - _ColorMask: 15
 >>>>>>> de35fce7d4ce2421e8c2a3b78643bd2790f3a179
-<<<<<<< Updated upstream
 >>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
-    - _BumpScale: 1
->>>>>>> parent of de35fce (Basic farm)
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
@@ -188,13 +159,9 @@ Material:
     - _DistortionStrength: 1
     - _DistortionStrengthScaled: 0.1
     - _DstBlend: 0
-<<<<<<< HEAD
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     - _EnableExternalAlpha: 0
 =======
-=======
->>>>>>> Stashed changes
 <<<<<<< HEAD
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
@@ -204,12 +171,7 @@ Material:
 =======
     - _EnableExternalAlpha: 0
 >>>>>>> de35fce7d4ce2421e8c2a3b78643bd2790f3a179
-<<<<<<< Updated upstream
 >>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> parent of de35fce (Basic farm)
     - _GlossMapScale: 1
     - _Glossiness: 0.12046307
     - _GlossyReflections: 1
@@ -230,19 +192,12 @@ Material:
     - _SpecularHighlights: 1
     - _SquashAmount: 1
     - _SrcBlend: 1
-<<<<<<< HEAD
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 =======
-=======
->>>>>>> Stashed changes
 <<<<<<< HEAD
     - _SrcBlendAlpha: 1
 =======
 >>>>>>> de35fce7d4ce2421e8c2a3b78643bd2790f3a179
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
     - _Stencil: 0
     - _StencilComp: 8
@@ -250,7 +205,6 @@ Material:
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
     - _UVSec: 0
     - _UseUIAlphaClip: 0
     - _WindQuality: 0
@@ -260,26 +214,13 @@ Material:
     - _UVSec: 0
     - _UseUIAlphaClip: 0
     - _WindQuality: 0
-=======
-<<<<<<< HEAD
-    - _Surface: 0
-    - _UVSec: 0
-    - _UseUIAlphaClip: 0
-    - _WindQuality: 0
->>>>>>> Stashed changes
     - _WorkflowMode: 1
 =======
     - _UVSec: 0
     - _UseUIAlphaClip: 0
     - _WindQuality: 0
 >>>>>>> de35fce7d4ce2421e8c2a3b78643bd2790f3a179
-<<<<<<< Updated upstream
 >>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
-    - _UVSec: 0
->>>>>>> parent of de35fce (Basic farm)
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
@@ -287,15 +228,11 @@ Material:
     - _CameraFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
-<<<<<<< HEAD
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 =======
-=======
->>>>>>> Stashed changes
 <<<<<<< HEAD
     - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
@@ -308,10 +245,6 @@ Material:
     - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 >>>>>>> de35fce7d4ce2421e8c2a3b78643bd2790f3a179
-<<<<<<< Updated upstream
 >>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> parent of de35fce (Basic farm)
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
