@@ -63,7 +63,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public virtual void OnPointerClick(PointerEventData eventData)
     {
         InventoryManager.Instance.InventoryToHand(slotIndex, inventoryType);
-        Debug.Log("Clicked on " + itemToDisplay.name);
+       // Debug.Log("Clicked on " + itemToDisplay.name);
     }
 
 }

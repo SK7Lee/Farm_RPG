@@ -59,6 +59,7 @@ public class Land : MonoBehaviour, ITimeTracker
     public void Interact()
     {
         ItemData toolSlot = InventoryManager.Instance.GetEquippedSlotItem(InventorySlot.InventoryType.Tool);
+       
         if (!InventoryManager.Instance.SlotEquipped(InventorySlot.InventoryType.Tool))
         {
             return;
@@ -92,7 +93,7 @@ public class Land : MonoBehaviour, ITimeTracker
         if (seedTool != null &&  landStatus != LandStatus.Soil && cropPlanted == null) 
         { 
             GameObject cropObject = Instantiate(cropPrefab, transform);
-            cropObject.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+            cropObject.transform.position = new Vector3(transform.position.x, 0.76f, transform.position.z);
             cropPlanted = cropObject.GetComponent<CropBehaviour>();
             cropPlanted.Plant(seedTool);
             InventoryManager.Instance.ConsumeItem(InventoryManager.Instance.GetEquippedSlot(InventorySlot.InventoryType.Tool));
