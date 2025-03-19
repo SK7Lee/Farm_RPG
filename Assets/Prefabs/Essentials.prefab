@@ -590,6 +590,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8562022687453158119}
+  - component: {fileID: 7617078080073155769}
   m_Layer: 0
   m_Name: Essentials
   m_TagString: Untagged
@@ -618,6 +619,18 @@ Transform:
   - {fileID: 7571958239844858388}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7617078080073155769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2270933438571598254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82c04c78e2db1204ab49cccbecdd522a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2366890808108843454
 GameObject:
   m_ObjectHideFlags: 0
