@@ -26,6 +26,10 @@ public class UIManager : MonoBehaviour, ITimeTracker
     public Text itemNameText;
     public Text itemDescriptionText;
 
+    [Header("Screen Transition")]
+    public GameObject fadeIn;
+    public GameObject fadeOut;
+
     private void Awake()
     {
         //If there is more than one instance of this class, destroy the new one
@@ -49,6 +53,32 @@ public class UIManager : MonoBehaviour, ITimeTracker
         TimeManager.Instance.RegisterTracker(this);
     }
 
+    #region Fadein Fadeout Transitions
+
+    public void FadeOutScreen()
+    {
+        fadeOut.SetActive(true);
+    }
+    public void FadeInScreen()
+    {
+        fadeIn.SetActive(true);
+    }
+
+    public void OnFadeInComplete()
+    {
+        //Disable the fade in screen
+        fadeIn.SetActive(false);
+    }
+
+    //Reset fadein fadeout
+    public void ResetFadeDefaults()
+    {        
+        fadeOut.SetActive(false);
+        fadeIn.SetActive(true); 
+    }
+
+    #endregion
+
     public void AssignSlotIndex()
     {
         for (int i = 0; i < toolSlots.Length; i++)
@@ -57,7 +87,6 @@ public class UIManager : MonoBehaviour, ITimeTracker
             itemSlots[i].AssignIndex(i);
         }
     }
-
 
     // Render the inventory screen to reflect the current inventory
     public void RenderInventory()

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Land : MonoBehaviour, ITimeTracker
 {
+    public int id;
     public enum LandStatus
     {
         Soil, Farmland, Watered
@@ -28,6 +29,28 @@ public class Land : MonoBehaviour, ITimeTracker
         TimeManager.Instance.RegisterTracker(this);
     }
 
+    public void LoadLandData(LandStatus statusToSwitch, GameTimestamp lastWatered)
+    {
+        landStatus = statusToSwitch;
+        timeWatered = lastWatered;
+
+        Material materialToSwitch = soilMat;
+        switch (statusToSwitch)
+        {
+            case LandStatus.Soil:
+                materialToSwitch = soilMat;
+                break;
+            case LandStatus.Farmland:
+                materialToSwitch = farmlandMat;
+                break;
+            case LandStatus.Watered:
+                materialToSwitch = wateredMat;
+                break;
+
+        }
+        renderer.material = materialToSwitch;
+
+    }
     public void SwitchLandStatus(LandStatus statusToSwitch)
     {
         landStatus = statusToSwitch;
@@ -48,6 +71,7 @@ public class Land : MonoBehaviour, ITimeTracker
         }
 
         renderer.material = materialToSwitch;
+        LandManager.Instance.OnLandStateChange(id, landStatus, timeWatered);
 
     }
 
@@ -77,7 +101,10 @@ public class Land : MonoBehaviour, ITimeTracker
                     break;
                 case EquipmentData.ToolType.WateringCan:
                     //Switch the land status to watered
-                    SwitchLandStatus(LandStatus.Watered);
+                    if (landStatus != LandStatus.Soil)
+                    {
+                        SwitchLandStatus(LandStatus.Watered);
+                    }
                     break;
                 case EquipmentData.ToolType.Shovel:
                     if (cropPlanted != null)
@@ -95,7 +122,7 @@ public class Land : MonoBehaviour, ITimeTracker
             GameObject cropObject = Instantiate(cropPrefab, transform);
             cropObject.transform.position = new Vector3(transform.position.x, 0.76f, transform.position.z);
             cropPlanted = cropObject.GetComponent<CropBehaviour>();
-            cropPlanted.Plant(seedTool);
+            cropPlanted.Plant(id,seedTool);
             InventoryManager.Instance.ConsumeItem(InventoryManager.Instance.GetEquippedSlot(InventorySlot.InventoryType.Tool));
         }
     }
