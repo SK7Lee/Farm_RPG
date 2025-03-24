@@ -1,7 +1,8 @@
 using UnityEngine;
+using static CropBehaviour;
 
 [System.Serializable]
-public class CropSaveState : MonoBehaviour
+public struct CropSaveState 
 {
     public int landID;
     public string seedToGrow;
@@ -17,5 +18,41 @@ public class CropSaveState : MonoBehaviour
         this.growth = growth;
 
         this.health = health;
+    }
+
+    public void Grow()
+    {
+        growth++;
+
+        SeedData seedInfo = (SeedData)InventoryManager.Instance.itemIndex.GetItemFromString(seedToGrow);
+        int maxGrowth =  GameTimestamp.HoursToMinutes(GameTimestamp.DaysToHours(seedInfo.daysToGrow));
+        int maxHealth = GameTimestamp.HoursToMinutes(48);
+
+        if (health < maxHealth)
+        {
+            health++;
+        }
+
+        if (growth >= maxGrowth / 2 && cropState == CropBehaviour.CropState.Seed)
+        {
+            cropState = CropBehaviour.CropState.Seedling;
+        }
+
+        if (growth >= maxGrowth && cropState == CropBehaviour.CropState.Seedling)
+        {
+            cropState = CropBehaviour.CropState.Harvestable;
+        }
+
+    }
+
+    public void Wither()
+    {
+        health--;
+        if (health <= 0 && cropState != CropBehaviour.CropState.Seed)
+        {
+            cropState = CropBehaviour.CropState.Wilted;
+            
+        }
+
     }
 }
