@@ -109,7 +109,7 @@ public class Land : MonoBehaviour, ITimeTracker
                 case EquipmentData.ToolType.Shovel:
                     if (cropPlanted != null)
                     {
-                        Destroy(cropPlanted.gameObject);
+                        cropPlanted.RemoveCrop();
                     }
                     break;
 
@@ -118,13 +118,19 @@ public class Land : MonoBehaviour, ITimeTracker
         }
         SeedData seedTool = toolSlot as SeedData;
         if (seedTool != null &&  landStatus != LandStatus.Soil && cropPlanted == null) 
-        { 
-            GameObject cropObject = Instantiate(cropPrefab, transform);
-            cropObject.transform.position = new Vector3(transform.position.x, 0.76f, transform.position.z);
-            cropPlanted = cropObject.GetComponent<CropBehaviour>();
+        {
+            SpawnCrop();
             cropPlanted.Plant(id,seedTool);
             InventoryManager.Instance.ConsumeItem(InventoryManager.Instance.GetEquippedSlot(InventorySlot.InventoryType.Tool));
         }
+    }
+
+    public CropBehaviour SpawnCrop()
+    {
+        GameObject cropObject = Instantiate(cropPrefab, transform);
+        cropObject.transform.position = new Vector3(transform.position.x, 0.76f, transform.position.z);
+        cropPlanted = cropObject.GetComponent<CropBehaviour>();
+        return cropPlanted;
     }
 
     public void ClockUpdate(GameTimestamp timestamp)

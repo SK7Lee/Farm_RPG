@@ -67,6 +67,8 @@ public class CropBehaviour : MonoBehaviour
         {
             SwitchState(CropState.Harvestable);
         }
+
+        LandManager.Instance.OnCropStateChange(landID, cropState, growth, health);
     }
 
     public void Wither()
@@ -76,6 +78,8 @@ public class CropBehaviour : MonoBehaviour
         {
             SwitchState(CropState.Wilted);
         }
+        LandManager.Instance.OnCropStateChange(landID, cropState, growth, health);
+
     }
 
     void SwitchState(CropState stateToSwitch)
@@ -99,7 +103,7 @@ public class CropBehaviour : MonoBehaviour
                 if (!seedToGrow.regrowable)
                 {
                     harvestable.transform.parent = null;
-                    Destroy(gameObject);
+                    RemoveCrop();
 
                 }
                 break;
@@ -111,10 +115,17 @@ public class CropBehaviour : MonoBehaviour
         cropState = stateToSwitch;
     }
 
+    public void RemoveCrop()
+    {
+        LandManager.Instance.DeregisterCrop(landID);
+        Destroy(gameObject);
+    }
     public void Regrow()
     {
         int hoursToRegrow = GameTimestamp.DaysToHours(seedToGrow.daysToRegrow);
         growth = maxGrowth - GameTimestamp.HoursToMinutes(hoursToRegrow);
         SwitchState(CropState.Seedling);
     }
+
+    
 }

@@ -16,6 +16,9 @@ public class InventoryManager : MonoBehaviour
             Instance = this;
         }
     }
+
+    public ItemIndex itemIndex;
+
     [Header("Tools")]
     [SerializeField] 
     private ItemSlotData[] toolSlots = new ItemSlotData[8];

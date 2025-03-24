@@ -1490,6 +1490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 765da126730796947a54292ae7788267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemIndex: {fileID: 11400000, guid: f51c46104542d474cb35cb1cfd461c67, type: 2}
   toolSlots:
   - itemData: {fileID: 11400000, guid: 15893137bb7eacb428566bc632eb019c, type: 2}
     quantity: 1
@@ -1508,7 +1509,7 @@ MonoBehaviour:
   - itemData: {fileID: 0}
     quantity: 0
   equippedToolSlot:
-    itemData: {fileID: 11400000, guid: 769cdf68111a55c479ab0e3f7b77c261, type: 2}
+    itemData: {fileID: 0}
     quantity: 1
   itemSlots:
   - itemData: {fileID: 11400000, guid: 771e4db91cab0b249ae148f3a9705df9, type: 2}
