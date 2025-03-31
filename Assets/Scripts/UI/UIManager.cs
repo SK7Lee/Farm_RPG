@@ -30,6 +30,12 @@ public class UIManager : MonoBehaviour, ITimeTracker
     public GameObject fadeIn;
     public GameObject fadeOut;
 
+    [Header ("Yes No Prompt") ]
+    public YesNoPrompt yesNoPrompt;
+
+    [Header("Player Stats")]
+    public Text moneyText;
+
     private void Awake()
     {
         //If there is more than one instance of this class, destroy the new one
@@ -49,9 +55,23 @@ public class UIManager : MonoBehaviour, ITimeTracker
         //Render the inventory screen to reflect the current inventory
         RenderInventory();
         AssignSlotIndex();
-
+        RenderPlayerStats();
         TimeManager.Instance.RegisterTracker(this);
+
     }
+
+    public void TriggerYesNoPrompt(string message, System.Action onYesCallback)
+    {
+        if (yesNoPrompt == null)
+        {
+            Debug.LogError("Yes/No prompt is not assigned!");
+            return;
+        }
+        Debug.Log("Showing Yes/No UI");
+        yesNoPrompt.gameObject.SetActive(true);
+        yesNoPrompt.CreatePrompt(message, onYesCallback);
+    }
+
 
     #region Fadein Fadeout Transitions
 
@@ -79,6 +99,7 @@ public class UIManager : MonoBehaviour, ITimeTracker
 
     #endregion
 
+    #region Inventory
     public void AssignSlotIndex()
     {
         for (int i = 0; i < toolSlots.Length; i++)
@@ -154,7 +175,9 @@ public class UIManager : MonoBehaviour, ITimeTracker
         itemNameText.text = data.name;
         itemDescriptionText.text = data.description;
     }
+    #endregion
 
+    #region Time
     public void ClockUpdate(GameTimestamp timestamp)
     {
         int hours = timestamp.hour;
@@ -178,5 +201,10 @@ public class UIManager : MonoBehaviour, ITimeTracker
         dateText.text = season + " " + day + " (" + dayOfTheWeek + ")";
 
     }
+    #endregion
 
+    public void RenderPlayerStats()
+    {
+        moneyText.text = PlayerStats.Money + PlayerStats.CURRENCY;
+    }
 }

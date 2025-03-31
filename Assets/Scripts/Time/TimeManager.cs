@@ -13,6 +13,7 @@ public class TimeManager : MonoBehaviour
 
     [Header("Day and Night cycle")]
     public Transform sunTransform;
+    private float indoorAngle = 40;
 
     List<ITimeTracker> listeners = new List<ITimeTracker>();
 
@@ -36,6 +37,10 @@ public class TimeManager : MonoBehaviour
         StartCoroutine(TimeUpdate());
     }
 
+    public void LoadTime(GameTimestamp timestamp)
+    {
+        this.timestamp = new GameTimestamp(timestamp);
+    }
     IEnumerator TimeUpdate()
     {
         while (true)
@@ -60,8 +65,33 @@ public class TimeManager : MonoBehaviour
 
     }
 
+    public void SkipTime(GameTimestamp timeToSkipTo)
+    {
+        int timeToSkipInMinutes = GameTimestamp.TimestampToMinutes(timeToSkipTo);
+        Debug.Log("Time to skip in minutes: " + timeToSkipInMinutes);
+        int timeNowInMinutes = GameTimestamp.TimestampToMinutes(timestamp);
+        Debug.Log("Time now in minutes: " + timeNowInMinutes);
+        int differenceInMinutes = timeToSkipInMinutes - timeNowInMinutes;
+        Debug.Log("Difference in minutes: " + differenceInMinutes);
+        if (differenceInMinutes < 0)
+        {
+            Debug.LogError("Cannot skip to a time in the past");
+            return;
+        }
+        for (int i = 0; i < differenceInMinutes; i++)
+        {
+            Tick();
+        }
+    }
+
     void UpdateSunMovement()
     {
+        if (SceneTransitionManager.Instance.CurrentlyIndoor())
+        {
+            sunTransform.eulerAngles = new Vector3(indoorAngle, 0, 0);
+            return;
+        }
+
         int timeInMinutes = GameTimestamp.HoursToMinutes(timestamp.hour) + timestamp.minute;
 
         float sunAngle = .25f * timeInMinutes - 90;
@@ -86,5 +116,6 @@ public class TimeManager : MonoBehaviour
     {
         listeners.Remove(listener);
     }
+
 
 }

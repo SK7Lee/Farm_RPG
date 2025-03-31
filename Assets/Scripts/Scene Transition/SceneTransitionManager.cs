@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +14,8 @@ public class SceneTransitionManager : MonoBehaviour
     }
 
     public Location currentLocation;
+    static readonly Location[] indoor = {Location.PlayerHome };
+
     Transform playerPoint;
     bool screenFadedOut;
     private void Awake()
@@ -36,6 +39,11 @@ public class SceneTransitionManager : MonoBehaviour
 
     }
 
+    public bool CurrentlyIndoor()
+    {
+        return indoor.Contains(currentLocation);
+    }
+
     public void SwitchLocation(Location locationToSwitch)
     {
         UIManager.Instance.FadeOutScreen();
@@ -55,6 +63,8 @@ public class SceneTransitionManager : MonoBehaviour
         screenFadedOut = false;
         UIManager.Instance.ResetFadeDefaults();
         SceneManager.LoadScene(locationToSwitch.ToString());
+        playerCharacter.enabled = true;
+
     }
 
     public void OnFadeOutComplete()

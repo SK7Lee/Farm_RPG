@@ -115,6 +115,11 @@ public class GameTimestamp
         return years * 4 * 30;
     }
 
+    public static int TimestampToMinutes(GameTimestamp timestamp)
+    {
+        return HoursToMinutes(DaysToHours(YearsToDays(timestamp.year)) + DaysToHours(SeasonsToDays(timestamp.season)) + DaysToHours(timestamp.day) + timestamp.hour) + timestamp.minute;
+        
+    }
 
     /// Calcilate the difference in time between two timestamps
     public static int CompareTimestamps(GameTimestamp timestamp1, GameTimestamp timestamp2)

@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement System")]
     public float walkSpeed = 4f;
     public float runSpeed = 8f;
+    private float gravity = 9.81f;
 
     PlayerInteraction playerInteraction;
 
@@ -48,6 +49,10 @@ public class PlayerController : MonoBehaviour
         { 
             playerInteraction.ItemInteract();
         }
+        if (Input.GetButtonDown("Fire3"))
+        {
+            playerInteraction.ItemKeep();
+        }
     }
 
     public void Move()
@@ -58,6 +63,11 @@ public class PlayerController : MonoBehaviour
         Vector3 dir = new Vector3(horizontal, 0f, vertical).normalized;
         Vector3 velocity = moveSpeed * Time.deltaTime * dir;
 
+        if (controller.isGrounded)
+        {
+            velocity.y = 0;
+        }
+        velocity.y -= Time.deltaTime * gravity;
         if (Input.GetButton("Sprint"))
         {
             moveSpeed = runSpeed;
@@ -78,7 +88,7 @@ public class PlayerController : MonoBehaviour
             controller.Move(velocity);
         }
 
-        animator.SetFloat("Speed", velocity.magnitude);
+        animator.SetFloat("Speed", dir.magnitude);
 
     }
 }
