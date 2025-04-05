@@ -36,6 +36,9 @@ public class UIManager : MonoBehaviour, ITimeTracker
     [Header("Player Stats")]
     public Text moneyText;
 
+    [Header("Shop")]
+    public ShopListingManager shopListingManager;
+
     private void Awake()
     {
         //If there is more than one instance of this class, destroy the new one
