@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,7 +24,8 @@ public class UIManager : MonoBehaviour, ITimeTracker
     public InventorySlot[] toolSlots;
     public InventorySlot[] itemSlots;
 
-    //Item info box
+    [Header("Item info box")]
+    public GameObject ItemInfoBox;
     public Text itemNameText;
     public Text itemDescriptionText;
 
@@ -59,6 +62,7 @@ public class UIManager : MonoBehaviour, ITimeTracker
         RenderInventory();
         AssignSlotIndex();
         RenderPlayerStats();
+        DisplayItemInfo(null);
         TimeManager.Instance.RegisterTracker(this);
 
     }
@@ -171,10 +175,10 @@ public class UIManager : MonoBehaviour, ITimeTracker
         {
             itemNameText.text = "";
             itemDescriptionText.text = "";
-
+            ItemInfoBox.SetActive(false);
             return;
         }
-
+        ItemInfoBox.SetActive(true);
         itemNameText.text = data.name;
         itemDescriptionText.text = data.description;
     }
@@ -209,5 +213,11 @@ public class UIManager : MonoBehaviour, ITimeTracker
     public void RenderPlayerStats()
     {
         moneyText.text = PlayerStats.Money + PlayerStats.CURRENCY;
+    }
+
+    public void OpenShop(List<ItemData> shopItems)
+    {
+        shopListingManager.gameObject.SetActive(true);
+        shopListingManager.RenderShop(shopItems);
     }
 }

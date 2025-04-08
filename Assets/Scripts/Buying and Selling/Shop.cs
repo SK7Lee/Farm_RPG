@@ -5,6 +5,9 @@ public class Shop : InteractableObject
 {
     public List<ItemData> shopItems;
 
+    [Header("Dialogues")]
+    public List<DialogueLine> dialogueOnShopOpen;
+
     public static void Purchase(ItemData item, int quantity)
     {
         int totalCost = item.cost * quantity;
@@ -19,7 +22,12 @@ public class Shop : InteractableObject
 
     public override void Pickup()
     {
+        DialogueManager.Instance.StartDialogue(dialogueOnShopOpen,  OpenShop);
+    }
 
+    void OpenShop()
+    {
+        UIManager.Instance.OpenShop(shopItems);
     }
 
 }

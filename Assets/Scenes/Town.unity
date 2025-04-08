@@ -3210,6 +3210,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5212917986248739469, guid: 8b66ad2976a5a9343983adff14369c53, type: 3}
+      propertyPath: shopListing
+      value: 
+      objectReference: {fileID: 669209863551972795, guid: 71d3a777de2ba6444aee1affbda9f526, type: 3}
     - target: {fileID: 8562022687453158119, guid: 8b66ad2976a5a9343983adff14369c53, type: 3}
       propertyPath: m_LocalPosition.x
       value: 27.75644
@@ -3401,7 +3405,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1366675834041116, guid: 0504778a38044d446a030c9203219e0d, type: 3}
       propertyPath: m_Name
-      value: SM_Prop_Table_01
+      value: Shop Table
       objectReference: {fileID: 0}
     - target: {fileID: 1366675834041116, guid: 0504778a38044d446a030c9203219e0d, type: 3}
       propertyPath: m_TagString
@@ -4346,6 +4350,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Chr_FarmGirl_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1660164172697688, guid: a3981b0f4b9c4bb489dce3db59ee32b5, type: 3}
+      propertyPath: m_TagString
+      value: Item
+      objectReference: {fileID: 0}
     - target: {fileID: 4952997671050128, guid: a3981b0f4b9c4bb489dce3db59ee32b5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.568
@@ -4393,7 +4401,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1660164172697688, guid: a3981b0f4b9c4bb489dce3db59ee32b5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 796102390}
+    - targetCorrespondingSourceObject: {fileID: 1660164172697688, guid: a3981b0f4b9c4bb489dce3db59ee32b5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 796102389}
   m_SourcePrefab: {fileID: 100100000, guid: a3981b0f4b9c4bb489dce3db59ee32b5, type: 3}
 --- !u!1001 &748441393
 PrefabInstance:
@@ -4656,6 +4670,46 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4227045984723998, guid: ef5a38a28b01c9648bc93bc079f3a90b, type: 3}
   m_PrefabInstance: {fileID: 795479585}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &796102386 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1660164172697688, guid: a3981b0f4b9c4bb489dce3db59ee32b5, type: 3}
+  m_PrefabInstance: {fileID: 747298925}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &796102389
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796102386}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &796102390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796102386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8901c7215a93fd9488f8d62e391b7dd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  characterData: {fileID: 11400000, guid: cb72e32877c3a4a4881ec17632daf89f, type: 2}
 --- !u!1001 &797061041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12492,7 +12546,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 769cdf68111a55c479ab0e3f7b77c261, type: 2}
-  shopItems: []
+  shopItems:
+  - {fileID: 11400000, guid: 769cdf68111a55c479ab0e3f7b77c261, type: 2}
+  - {fileID: 11400000, guid: d65708b0c539c7b4d974963f3a6e670f, type: 2}
+  dialogueOnShopOpen:
+  - speaker: Sophie
+    message: Welcome to my store!
+  - speaker: Sophie
+    message: I have a variety of seeds available. I hope they will be useful of your
+      farm!
 --- !u!1001 &1938816509
 PrefabInstance:
   m_ObjectHideFlags: 0
