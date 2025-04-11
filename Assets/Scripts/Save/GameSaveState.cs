@@ -17,7 +17,10 @@ public class GameSaveState
     public GameTimestamp timestamp;
     //Currency
     public int money;
-    public GameSaveState(List<LandSaveState> landData, List<CropSaveState> cropData, ItemSlotData[] toolSlots, ItemSlotData[] itemSlots, ItemSlotData equippedItemSlot, ItemSlotData equippedToolSlot, GameTimestamp timestamp,int money)
+    //Relationships
+    public List<NPCRelationshipState> relationships;
+
+    public GameSaveState(List<LandSaveState> landData, List<CropSaveState> cropData, ItemSlotData[] toolSlots, ItemSlotData[] itemSlots, ItemSlotData equippedItemSlot, ItemSlotData equippedToolSlot, GameTimestamp timestamp,int money, List<NPCRelationshipState> relationships)
     {
         this.landData = landData;
         this.cropData = cropData;
@@ -27,5 +30,6 @@ public class GameSaveState
         this.equippedToolSlot = ItemSlotData.SerializeData(equippedToolSlot);
         this.timestamp = timestamp;
         this.money = money;
+        this.relationships = relationships;
     }
 }

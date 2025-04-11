@@ -21,6 +21,7 @@ public class SaveManager : MonoBehaviour
         }
     }
 
+    //Load the save file
     public static GameSaveState Load()
     {
         GameSaveState loadedSave = null;

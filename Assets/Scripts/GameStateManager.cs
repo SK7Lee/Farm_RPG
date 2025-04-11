@@ -26,10 +26,23 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
         TimeManager.Instance.RegisterTracker(this);
     }
 
+    void OnDayReset()
+    {
+        Debug.Log("Day Reset");
+        foreach(NPCRelationshipState npc in RelationshipStats.relationships)
+        {
+            npc.hasTalkedToday = false;
+        }
+    }
+
     public void ClockUpdate(GameTimestamp timestamp)
     {
         UpdateShippingState(timestamp);
         UpdateFarmState(timestamp);
+        if (timestamp.hour == 0 && timestamp.minute == 0)
+        {
+            OnDayReset();
+        }
     }
 
     void UpdateShippingState(GameTimestamp timestamp) 
@@ -123,7 +136,7 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
         //Time
         GameTimestamp timestamp = TimeManager.Instance.GetGameTimestamp();
 
-        return new GameSaveState(landData, cropData, toolSlots, itemSlots, equippedItemSlot, equippedToolSlot, timestamp,PlayerStats.Money);
+        return new GameSaveState(landData, cropData, toolSlots, itemSlots, equippedItemSlot, equippedToolSlot, timestamp,PlayerStats.Money, RelationshipStats.relationships);
     }
  
     public void LoadSave()
@@ -142,5 +155,6 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
         LandManager.farmData = new System.Tuple<List<LandSaveState>, List<CropSaveState>>(save.landData, save.cropData);
 
         PlayerStats.LoadStats(save.money);
+        RelationshipStats.LoadStats(save.relationships);
     }
 }

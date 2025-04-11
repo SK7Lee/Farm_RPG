@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4207671c9136dd4587415c11f6bac4e, type: 3}
-  m_Name: Sophie
+  m_Name: Brute
   m_EditorClassIdentifier: 
   birthday:
     year: 0
@@ -21,10 +21,13 @@ MonoBehaviour:
   likes: []
   dislikes: []
   onFirstMeet:
-  - speaker: Sophie
-    message: Are you the new famer?
-  - speaker: Sophie
-    message: Nice to meet you, I'm Sophie.
+  - speaker: Brute
+    message: Are you the new famer on the block?
+  - speaker: Brute
+    message: Nice to meet you. I'm Ben. I run a Ranch in this town, so you can visit
+      me for tips on rearing animals!
   defaultDialogue:
-  - speaker: Sophie
-    message: Good morning!
+  - speaker: Brute
+    message: Hey, how's the farm going?
+  - speaker: Brute
+    message: Have a nice day!
