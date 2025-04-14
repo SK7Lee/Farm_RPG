@@ -7,6 +7,7 @@ public class NPCRelationshipState
     public int friendshipPoints;
 
     public bool hasTalkedToday;
+    public bool giftGivenToday;
     public NPCRelationshipState(string name, int friendshipPoints)
     {
         this.name = name;

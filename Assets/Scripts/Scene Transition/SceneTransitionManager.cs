@@ -10,11 +10,11 @@ public class SceneTransitionManager : MonoBehaviour
 
     public enum Location
     {
-        Farm, Town, PlayerHome
+        Farm, Town, PlayerHome, ChickenCoop
     }
 
     public Location currentLocation;
-    static readonly Location[] indoor = {Location.PlayerHome };
+    static readonly Location[] indoor = {Location.PlayerHome, Location.ChickenCoop };
 
     Transform playerPoint;
     bool screenFadedOut;
@@ -83,6 +83,9 @@ public class SceneTransitionManager : MonoBehaviour
             return;
         }
         Transform startPoint = LocationManager.Instance.GetPlayerStartingPosition(oldLocation);
+
+        if (playerPoint == null) return;
+
         CharacterController playerCharacter = playerPoint.GetComponent<CharacterController>();
         playerCharacter.enabled = false;
 

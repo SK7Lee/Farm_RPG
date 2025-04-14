@@ -63,7 +63,15 @@ public class InventoryManager : MonoBehaviour
         {
             ItemSlotData slotToEquip = new ItemSlotData(inventoryToAlter[slotIndex]);        
             inventoryToAlter[slotIndex] =new ItemSlotData( handToEquip);
-            EquipHandSlot(slotToEquip);
+
+            if (slotToEquip.IsEmpty())
+            {
+                handToEquip.Empty();
+            }
+            else 
+            { 
+                EquipHandSlot(slotToEquip);
+            }
         }
 
         if (inventoryType == InventorySlot.InventoryType.Item)

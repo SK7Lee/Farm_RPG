@@ -32,6 +32,7 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
         foreach(NPCRelationshipState npc in RelationshipStats.relationships)
         {
             npc.hasTalkedToday = false;
+            npc.giftGivenToday = false;
         }
     }
 
@@ -39,6 +40,7 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
     {
         UpdateShippingState(timestamp);
         UpdateFarmState(timestamp);
+        IncubationManager.UpdateEggs();
         if (timestamp.hour == 0 && timestamp.minute == 0)
         {
             OnDayReset();
@@ -136,7 +138,7 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
         //Time
         GameTimestamp timestamp = TimeManager.Instance.GetGameTimestamp();
 
-        return new GameSaveState(landData, cropData, toolSlots, itemSlots, equippedItemSlot, equippedToolSlot, timestamp,PlayerStats.Money, RelationshipStats.relationships);
+        return new GameSaveState(landData, cropData, toolSlots, itemSlots, equippedItemSlot, equippedToolSlot, timestamp,PlayerStats.Money, RelationshipStats.relationships, IncubationManager.eggsIncubating);
     }
  
     public void LoadSave()
@@ -144,17 +146,21 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
 
 
         GameSaveState save = SaveManager.Load();
+        //Time
         TimeManager.Instance.LoadTime(save.timestamp);
-
+        //Inventory
         ItemSlotData[] toolSlots = ItemSlotData.DeserializeArray(save.toolSlots);
         ItemSlotData equippedToolSlot = ItemSlotData.DeserializeData(save.equippedToolSlot);
         ItemSlotData[] itemSlots = ItemSlotData.DeserializeArray(save.itemSlots);
         ItemSlotData equippedItemSlot = ItemSlotData.DeserializeData(save.equippedItemSlot);
         InventoryManager.Instance.LoadInventory(toolSlots, equippedToolSlot, itemSlots, equippedItemSlot);
-
+        //Farm Data
         LandManager.farmData = new System.Tuple<List<LandSaveState>, List<CropSaveState>>(save.landData, save.cropData);
-
+        //Currency
         PlayerStats.LoadStats(save.money);
+        //Relationships
         RelationshipStats.LoadStats(save.relationships);
+        //Animals
+        IncubationManager.eggsIncubating = save.eggsIncubating;
     }
 }

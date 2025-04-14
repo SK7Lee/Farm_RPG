@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopListingManager : MonoBehaviour
+public class ShopListingManager : ListingManager<ItemData>
 {
-    public GameObject shopListing;
-    public Transform listingGrid;
 
     ItemData itemToBuy;
     int quantity;
@@ -17,24 +15,31 @@ public class ShopListingManager : MonoBehaviour
     public Text quantityText;
     public Text costCalculationText;
     public Button purchaseButton;
-
-    public void RenderShop(List<ItemData> shopItems)
-    {
-        //Reset the grid to remove any previous listings
-        if (listingGrid.childCount > 0)
+    /*
+        public void RenderShop(List<ItemData> shopItems)
         {
-            foreach (Transform child in listingGrid)
+            //Reset the grid to remove any previous listings
+            if (listingGrid.childCount > 0)
             {
-                Destroy(child.gameObject);
+                foreach (Transform child in listingGrid)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+
+            //Create a new listing for each item in the shop
+            foreach (ItemData shopItem in shopItems)
+            {
+                GameObject listingGameObject = Instantiate(shopListing, listingGrid);
+                listingGameObject.GetComponent<ShopListing>().Display(shopItem);
             }
         }
+    */
 
-        //Create a new listing for each item in the shop
-        foreach (ItemData shopItem in shopItems)
-        {
-            GameObject listingGameObject = Instantiate(shopListing, listingGrid);
-            listingGameObject.GetComponent<ShopListing>().Display(shopItem);
-        }
+    protected override void DisplayListing(ItemData listingItem, GameObject listingGameObject)
+    {
+        listingGameObject.GetComponent<ShopListing>().Display(listingItem);
+
     }
 
     public void OpenConfirmationScreen(ItemData item)
@@ -88,4 +93,6 @@ public class ShopListingManager : MonoBehaviour
     {
         confirmationScreen.SetActive(false);
     }
+
+   
 }

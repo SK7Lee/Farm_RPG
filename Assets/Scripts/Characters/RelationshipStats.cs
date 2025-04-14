@@ -5,7 +5,12 @@ using UnityEngine;
 public class RelationshipStats : MonoBehaviour
 {
     public static List<NPCRelationshipState> relationships = new List<NPCRelationshipState>();
-
+    public enum GiftReaction
+    {
+        Neutral,
+        Like,
+        Dislike
+    }
     public static void LoadStats(List<NPCRelationshipState> relationshipsToLoad)
     {
         if (relationshipsToLoad == null)
@@ -48,4 +53,32 @@ public class RelationshipStats : MonoBehaviour
         NPCRelationshipState npc = GetRelationship(character);
         return !npc.hasTalkedToday;
     }
+
+    public static bool GiftGivenToday(CharacterData character)
+    {
+        NPCRelationshipState npc = GetRelationship(character);
+        return npc.giftGivenToday;
+    }
+
+    public static GiftReaction GetReactionToGift(CharacterData character, ItemData item)
+    {
+        //if (FirstMeeting(character)) return GiftReaction.Neutral;
+        if (character.likes.Contains(item))
+        {
+            return GiftReaction.Like;
+        }
+        else if (character.dislikes.Contains(item))
+        {
+            return GiftReaction.Dislike;
+        }
+        return GiftReaction.Neutral;
+    }
+    
+    public static bool IsBirthday(CharacterData character)
+    {
+        GameTimestamp birthday = character.birthday;
+        GameTimestamp today = TimeManager.Instance.GetGameTimestamp();
+        return (today.day == birthday.day) && (today.season == birthday.season);
+    }
+
 }

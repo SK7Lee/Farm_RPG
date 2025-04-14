@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4207671c9136dd4587415c11f6bac4e, type: 3}
   m_Name: Sophie
   m_EditorClassIdentifier: 
+  portrait: {fileID: 21300000, guid: 2b48c390e519b974daaacff2ce39a75a, type: 3}
   birthday:
     year: 0
     season: 0
     day: 0
     hour: 0
     minute: 0
-  likes: []
+  likes:
+  - {fileID: 11400000, guid: f13a95282b910ca42953f7b6a46dc869, type: 2}
   dislikes: []
   onFirstMeet:
   - speaker: Sophie
@@ -28,3 +30,15 @@ MonoBehaviour:
   defaultDialogue:
   - speaker: Sophie
     message: Good morning!
+  likedGiftDialogue:
+  - speaker: Sophie
+    message: Thank you! I really like this!
+  dislikedGiftDialogue:
+  - speaker: Sophie
+    message: I dislike this!
+  neutralGiftDialogue:
+  - speaker: Sophie
+    message: Thank you!
+  birthdayLikedGiftDialogue: []
+  birthdayDislikedGiftDialogue: []
+  birthdayNeutralGiftDialogue: []

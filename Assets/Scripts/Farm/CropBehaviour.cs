@@ -103,8 +103,7 @@ public class CropBehaviour : MonoBehaviour
                 if (!seedToGrow.regrowable)
                 {
                     harvestable.transform.parent = null;
-                    RemoveCrop();
-
+                    harvestable.GetComponent<InteractableObject>().onInteract.AddListener(RemoveCrop);
                 }
                 break;
             case CropState.Wilted:

@@ -64,6 +64,12 @@ public class InteractableCharacter : InteractableObject
     #region Conversation-related Functions
     void TriggerDialogue()
     {
+        //check if player hold sth
+        if (InventoryManager.Instance.SlotEquipped(InventorySlot.InventoryType.Item))
+        {
+            GiftDialogue();
+            return;
+        }
         List<DialogueLine> dialogueToHave = characterData.defaultDialogue;
         //check to determine which dialogue to have
         System.Action onDialogueEnd = null;
@@ -82,6 +88,69 @@ public class InteractableCharacter : InteractableObject
 
         DialogueManager.Instance.StartDialogue(dialogueToHave, onDialogueEnd);
     }
+
+    void GiftDialogue()
+    {
+        if (!EligibleForGift()) return;
+
+        ItemSlotData handSlot = InventoryManager.Instance.GetEquippedSlot(InventorySlot.InventoryType.Item);
+        List<DialogueLine> dialogueToHave = characterData.neutralGiftDialogue;
+
+        System.Action onDialogueEnd = () =>
+        {
+            relationship.giftGivenToday = true;
+            InventoryManager.Instance.ConsumeItem(handSlot);
+        };
+
+        onDialogueEnd += ResetRotation;
+
+        bool isBirthday = RelationshipStats.IsBirthday(characterData);
+        //friendship points to add
+        int pointsToAdd = 0;
+        switch (RelationshipStats.GetReactionToGift(characterData, handSlot.itemData))
+        {
+            case RelationshipStats.GiftReaction.Like:
+                dialogueToHave = characterData.likedGiftDialogue;
+                pointsToAdd = 80;
+                if (isBirthday) dialogueToHave = characterData.birthdayLikedGiftDialogue;
+                break;
+            case RelationshipStats.GiftReaction.Dislike:
+                dialogueToHave = characterData.dislikedGiftDialogue;
+                pointsToAdd = -20;
+                if (isBirthday) dialogueToHave = characterData.birthdayDislikedGiftDialogue;
+                break;
+            case RelationshipStats.GiftReaction.Neutral:
+                dialogueToHave = characterData.neutralGiftDialogue;
+                pointsToAdd = 20;
+                if (isBirthday) dialogueToHave = characterData.birthdayNeutralGiftDialogue;
+                break;
+        }
+
+        if (isBirthday)
+        {
+            pointsToAdd *= 8;
+        }
+        RelationshipStats.AddFriendshipPoints(characterData, pointsToAdd);
+        DialogueManager.Instance.StartDialogue(dialogueToHave, onDialogueEnd);
+
+    }
+
+    bool EligibleForGift()
+    {
+        if (RelationshipStats.FirstMeeting(characterData))
+        {
+            DialogueManager.Instance.StartDialogue(DialogueManager.CreateSimpleMessage("You have not unlocked this character yet."));
+
+            return false;
+        }
+        if (RelationshipStats.GiftGivenToday(characterData))
+        {
+            DialogueManager.Instance.StartDialogue(DialogueManager.CreateSimpleMessage($"You have already given {characterData.name} a gift today."));
+            return false;
+        }
+        return true;
+    }
+
     void OnFirstMeeting()
     {
         RelationshipStats.UnlockCharacter(characterData);

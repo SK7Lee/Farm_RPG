@@ -19,8 +19,21 @@ public class GameSaveState
     public int money;
     //Relationships
     public List<NPCRelationshipState> relationships;
+    //Animals
+    public List<EggIncubationSaveState> eggsIncubating;
 
-    public GameSaveState(List<LandSaveState> landData, List<CropSaveState> cropData, ItemSlotData[] toolSlots, ItemSlotData[] itemSlots, ItemSlotData equippedItemSlot, ItemSlotData equippedToolSlot, GameTimestamp timestamp,int money, List<NPCRelationshipState> relationships)
+    public GameSaveState(
+        List<LandSaveState> landData, 
+        List<CropSaveState> cropData, 
+        ItemSlotData[] toolSlots, 
+        ItemSlotData[] itemSlots, 
+        ItemSlotData equippedItemSlot, 
+        ItemSlotData equippedToolSlot,
+        GameTimestamp timestamp,
+        int money, 
+        List<NPCRelationshipState> relationships,
+        List<EggIncubationSaveState> eggsIncubating
+        )
     {
         this.landData = landData;
         this.cropData = cropData;
@@ -31,5 +44,6 @@ public class GameSaveState
         this.timestamp = timestamp;
         this.money = money;
         this.relationships = relationships;
+        this.eggsIncubating = eggsIncubating;
     }
 }

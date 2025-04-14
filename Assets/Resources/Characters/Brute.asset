@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4207671c9136dd4587415c11f6bac4e, type: 3}
   m_Name: Brute
   m_EditorClassIdentifier: 
+  portrait: {fileID: 21300000, guid: ad53620e64613084aad63bd7b9c4f0a0, type: 3}
   birthday:
     year: 0
     season: 0
     day: 0
     hour: 0
     minute: 0
-  likes: []
+  likes:
+  - {fileID: 11400000, guid: 771e4db91cab0b249ae148f3a9705df9, type: 2}
   dislikes: []
   onFirstMeet:
   - speaker: Brute
@@ -31,3 +33,15 @@ MonoBehaviour:
     message: Hey, how's the farm going?
   - speaker: Brute
     message: Have a nice day!
+  likedGiftDialogue:
+  - speaker: Brute
+    message: I really like this, thanks!
+  dislikedGiftDialogue:
+  - speaker: Brute
+    message: This isn't quite what I like.
+  neutralGiftDialogue:
+  - speaker: Brute
+    message: For me? Don't mind if I do!
+  birthdayLikedGiftDialogue: []
+  birthdayDislikedGiftDialogue: []
+  birthdayNeutralGiftDialogue: []

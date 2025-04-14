@@ -14,19 +14,20 @@ public class PlayerController : MonoBehaviour
 
     PlayerInteraction playerInteraction;
 
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        
+
         playerInteraction = GetComponentInChildren<PlayerInteraction>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!controller.enabled) return; // Ensure the controller is active before proceeding
+
         Move();
 
         Interact();
@@ -34,6 +35,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.RightBracket))
         {
             TimeManager.Instance.Tick();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            UIManager.Instance.ToggleRelationshipPanel();
         }
     }
 
@@ -45,8 +51,8 @@ public class PlayerController : MonoBehaviour
             playerInteraction.Interact();
         }
 
-        if (Input.GetButtonDown("Fire2")) 
-        { 
+        if (Input.GetButtonDown("Fire2"))
+        {
             playerInteraction.ItemInteract();
         }
         if (Input.GetButtonDown("Fire3"))

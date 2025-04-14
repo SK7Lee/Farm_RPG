@@ -42,6 +42,18 @@ public class UIManager : MonoBehaviour, ITimeTracker
     [Header("Shop")]
     public ShopListingManager shopListingManager;
 
+    [Header("Relationships")]
+    public RelationshipListingManager relationshipListingManager;
+
+    [Header("Screen Management")]
+    public GameObject menuScreen;
+    public enum Tab
+    {
+        Inventory,
+        Relationships
+    }
+    public Tab selectedTab;
+
     private void Awake()
     {
         //If there is more than one instance of this class, destroy the new one
@@ -78,8 +90,34 @@ public class UIManager : MonoBehaviour, ITimeTracker
         yesNoPrompt.gameObject.SetActive(true);
         yesNoPrompt.CreatePrompt(message, onYesCallback);
     }
-
-
+    
+    #region Tab Management
+    public void ToggleMenuPanel()
+    {
+        menuScreen.SetActive(!menuScreen.activeSelf);
+        OpenWindow(selectedTab);
+        TabBehaviour.onTabStateChange?.Invoke();
+    }
+    public void OpenWindow(Tab windowToOpen)
+    {
+        relationshipListingManager.gameObject.SetActive(false);
+        inventoryPanel.SetActive(false);
+        switch (windowToOpen)
+        {
+            case Tab.Inventory:
+                inventoryPanel.SetActive(true);
+                RenderInventory();
+                break;
+            case Tab.Relationships:
+                relationshipListingManager.gameObject.SetActive(true);
+                relationshipListingManager.Render(RelationshipStats.relationships);
+                break;
+        }
+        selectedTab = windowToOpen;
+    }
+    
+    #endregion
+    
     #region Fadein Fadeout Transitions
 
     public void FadeOutScreen()
@@ -218,6 +256,18 @@ public class UIManager : MonoBehaviour, ITimeTracker
     public void OpenShop(List<ItemData> shopItems)
     {
         shopListingManager.gameObject.SetActive(true);
-        shopListingManager.RenderShop(shopItems);
+        shopListingManager.Render(shopItems);
     }
+
+    public void ToggleRelationshipPanel()
+    {
+        GameObject panel = relationshipListingManager.gameObject;
+        panel.SetActive(!panel.activeSelf);
+
+        if (panel.activeSelf)
+        {
+            relationshipListingManager.Render(RelationshipStats.relationships);
+        }
+    }
+
 }

@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Town.unity
     guid: 17b76afb0d27e904fa43588156b95ccc
+  - enabled: 1
+    path: Assets/Scenes/ChickenCoop.unity
+    guid: 69397969ffaf8374aa6e96926920199d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -98,5 +98,12 @@ public class DialogueManager : MonoBehaviour
         isTyping = false;
     }
         
+    public static List<DialogueLine> CreateSimpleMessage(string message)
+    {
+        DialogueLine messageDialogueLine = new DialogueLine("", message);
+        List<DialogueLine> listToReturn = new List<DialogueLine>();
+        listToReturn.Add(messageDialogueLine);
+        return listToReturn;
+    }
 
 }
