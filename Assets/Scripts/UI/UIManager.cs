@@ -33,8 +33,9 @@ public class UIManager : MonoBehaviour, ITimeTracker
     public GameObject fadeIn;
     public GameObject fadeOut;
 
-    [Header ("Yes No Prompt") ]
+    [Header ("Prompts") ]
     public YesNoPrompt yesNoPrompt;
+    public NamingPrompt namingPrompt;
 
     [Header("Player Stats")]
     public Text moneyText;
@@ -79,6 +80,21 @@ public class UIManager : MonoBehaviour, ITimeTracker
 
     }
 
+    #region Prompts
+    public void TriggerNamingPrompt(string message, System.Action<string> onConfirmCallback)
+    {
+        //Check if the naming prompt is assigned
+        if (namingPrompt.gameObject.activeSelf)
+        {
+            namingPrompt.QueuePromptAction(() => TriggerNamingPrompt(message, onConfirmCallback));
+            return;
+        }
+
+        Debug.Log("Showing Naming UI");
+        namingPrompt.gameObject.SetActive(true);
+        namingPrompt.CreatePrompt(message, onConfirmCallback);
+    }
+
     public void TriggerYesNoPrompt(string message, System.Action onYesCallback)
     {
         if (yesNoPrompt == null)
@@ -90,7 +106,8 @@ public class UIManager : MonoBehaviour, ITimeTracker
         yesNoPrompt.gameObject.SetActive(true);
         yesNoPrompt.CreatePrompt(message, onYesCallback);
     }
-    
+    #endregion
+
     #region Tab Management
     public void ToggleMenuPanel()
     {

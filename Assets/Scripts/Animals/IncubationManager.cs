@@ -34,7 +34,10 @@ public class IncubationManager : MonoBehaviour
             if (egg.timeToIncubate <= 0)
             {                
                 eggsIncubating.Remove(egg);
-                Debug.Log("Egg hatched from incubator " + egg.incubatorID);
+                //Get the animal data from the incubator ID
+                AnimalData chickenData = AnimalStats.GetAnimalTypeFromString("Chicken");
+                //Handle the chick hatching here
+                AnimalStats.StartAnimalCreation(chickenData);
             }
         }
     }

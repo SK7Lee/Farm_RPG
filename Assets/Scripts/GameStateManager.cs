@@ -138,7 +138,7 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
         //Time
         GameTimestamp timestamp = TimeManager.Instance.GetGameTimestamp();
 
-        return new GameSaveState(landData, cropData, toolSlots, itemSlots, equippedItemSlot, equippedToolSlot, timestamp,PlayerStats.Money, RelationshipStats.relationships, IncubationManager.eggsIncubating);
+        return new GameSaveState(landData, cropData, toolSlots, itemSlots, equippedItemSlot, equippedToolSlot, timestamp,PlayerStats.Money, RelationshipStats.relationships, AnimalStats.animalRelationships, IncubationManager.eggsIncubating);
     }
  
     public void LoadSave()
@@ -160,6 +160,7 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
         PlayerStats.LoadStats(save.money);
         //Relationships
         RelationshipStats.LoadStats(save.relationships);
+        AnimalStats.LoadStats(save.animals);
         //Animals
         IncubationManager.eggsIncubating = save.eggsIncubating;
     }

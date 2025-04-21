@@ -19,6 +19,8 @@ public class GameSaveState
     public int money;
     //Relationships
     public List<NPCRelationshipState> relationships;
+    public List<AnimalRelationshipState> animals;
+
     //Animals
     public List<EggIncubationSaveState> eggsIncubating;
 
@@ -32,6 +34,7 @@ public class GameSaveState
         GameTimestamp timestamp,
         int money, 
         List<NPCRelationshipState> relationships,
+        List<AnimalRelationshipState> animals,
         List<EggIncubationSaveState> eggsIncubating
         )
     {
@@ -44,6 +47,7 @@ public class GameSaveState
         this.timestamp = timestamp;
         this.money = money;
         this.relationships = relationships;
+        this.animals = animals;
         this.eggsIncubating = eggsIncubating;
     }
 }
