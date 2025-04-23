@@ -15,4 +15,4 @@ MonoBehaviour:
   description: An orange root vegetable
   thumbnail: {fileID: 21300000, guid: 18bbd24dc10ed3f46b6c1018657cb01c, type: 3}
   gameModel: {fileID: 5321418035141366487, guid: 167b92baf36c0634b8d98019f008c5eb, type: 3}
-  cost: 0
+  cost: 100

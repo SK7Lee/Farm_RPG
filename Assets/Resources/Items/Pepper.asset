@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 'A colorful vegetable with a mild taste  '
   thumbnail: {fileID: 21300000, guid: d43d85dcc4cc7074fb1bfc703bbf7b32, type: 3}
-  gameModel: {fileID: 0}
-  cost: 0
+  gameModel: {fileID: 4901436496734883759, guid: ca00fb51b032f834f88958ca9e1a50fd, type: 3}
+  cost: 150

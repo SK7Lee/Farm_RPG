@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ac1b4c2a0c181b47a6a7c3517be35ba, type: 3}
-  m_Name: Potato
+  m_Name: Pepper Crop
   m_EditorClassIdentifier: 
-  description: A starchy root vegetable
-  thumbnail: {fileID: 21300000, guid: abcf1ee553581a84cb3e16e5eef48336, type: 3}
-  gameModel: {fileID: 3411735870231464610, guid: 60cfbc486c5deac40bcc66b84fd96428, type: 3}
-  cost: 250
+  description: The crop the player will harvest first
+  thumbnail: {fileID: 0}
+  gameModel: {fileID: 4162443267517566863, guid: bd2b525e019aa1e4f9d08a2eba6da891, type: 3}
+  cost: 0
