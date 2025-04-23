@@ -45,13 +45,15 @@ public class UIManager : MonoBehaviour, ITimeTracker
 
     [Header("Relationships")]
     public RelationshipListingManager relationshipListingManager;
+    public AnimalListingManager animalRelationshipListingManager;
 
     [Header("Screen Management")]
     public GameObject menuScreen;
     public enum Tab
     {
         Inventory,
-        Relationships
+        Relationships,
+        Animals
     }
     public Tab selectedTab;
 
@@ -119,6 +121,7 @@ public class UIManager : MonoBehaviour, ITimeTracker
     {
         relationshipListingManager.gameObject.SetActive(false);
         inventoryPanel.SetActive(false);
+        animalRelationshipListingManager.gameObject.SetActive(false);
         switch (windowToOpen)
         {
             case Tab.Inventory:
@@ -128,6 +131,10 @@ public class UIManager : MonoBehaviour, ITimeTracker
             case Tab.Relationships:
                 relationshipListingManager.gameObject.SetActive(true);
                 relationshipListingManager.Render(RelationshipStats.relationships);
+                break;
+            case Tab.Animals:
+                animalRelationshipListingManager.gameObject.SetActive(true);
+                animalRelationshipListingManager.Render(AnimalStats.animalRelationships);
                 break;
         }
         selectedTab = windowToOpen;

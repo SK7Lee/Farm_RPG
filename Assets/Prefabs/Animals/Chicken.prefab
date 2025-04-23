@@ -333,6 +333,7 @@ GameObject:
   - component: {fileID: 1697092376409636769}
   - component: {fileID: 6165817278439938858}
   - component: {fileID: 7697909848885626036}
+  - component: {fileID: 3355355770797982446}
   - component: {fileID: -3071300390464210268}
   m_Layer: 0
   m_Name: Chicken
@@ -487,6 +488,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &3355355770797982446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3491003058841756294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a745160f82e2904d9de04cf0c256b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownTime: 8
 --- !u!195 &-3071300390464210268
 NavMeshAgent:
   m_ObjectHideFlags: 0

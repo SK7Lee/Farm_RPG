@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Egg
   m_EditorClassIdentifier: 
   description: An egg.
-  thumbnail: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  thumbnail: {fileID: 21300000, guid: 66de5bff344fe9c43b2bc61ed4bf10a8, type: 3}
   gameModel: {fileID: 648354819066546499, guid: 678bc8fc968af3b40acfb081bff2ef29, type: 3}
   cost: 100

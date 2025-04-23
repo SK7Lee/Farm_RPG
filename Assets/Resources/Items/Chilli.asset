@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Chilli
   m_EditorClassIdentifier: 
   description: Small, spicy peppers
-  thumbnail: {fileID: 0}
-  gameModel: {fileID: 0}
+  thumbnail: {fileID: 21300000, guid: 51b8fc603b4793d4da84565d3a31c82a, type: 3}
+  gameModel: {fileID: 8953807748468060915, guid: dc504879c8c274a43b2a062440481c96, type: 3}
   cost: 0

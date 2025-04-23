@@ -20,6 +20,13 @@ public class NPCRelationshipListing : MonoBehaviour
         DisplayHearts(relationship.Hearts());
     }
 
+    public void Display(AnimalData animalData, AnimalRelationshipState relationship)
+    {
+        portraitImage.sprite = animalData.portrait;
+        nameText.text = relationship.name;
+        DisplayHearts(relationship.Hearts());
+    }
+
     void DisplayHearts(float number)
     {
         foreach(Image heart in hearts)

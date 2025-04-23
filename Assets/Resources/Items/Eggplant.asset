@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Eggplant
   m_EditorClassIdentifier: 
   description: 'A purple, spongy vegetable  '
-  thumbnail: {fileID: 0}
+  thumbnail: {fileID: 21300000, guid: 45d659bdcc05c9940b0dae2562570632, type: 3}
   gameModel: {fileID: 0}
   cost: 0

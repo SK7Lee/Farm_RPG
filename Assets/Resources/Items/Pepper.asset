@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Pepper
   m_EditorClassIdentifier: 
   description: 'A colorful vegetable with a mild taste  '
-  thumbnail: {fileID: 0}
+  thumbnail: {fileID: 21300000, guid: d43d85dcc4cc7074fb1bfc703bbf7b32, type: 3}
   gameModel: {fileID: 0}
   cost: 0
