@@ -30,6 +30,47 @@ public class AnimalStats : MonoBehaviour
         animalRelationships = relationshipsToLoad;
     }
 
+    //Get the animals by type
+    public static List<AnimalRelationshipState> GetAnimalsByType(string animalTypeName)
+    {
+        return animalRelationships.FindAll(x => x.animalType == animalTypeName);
+    }
+
+    public static List<AnimalRelationshipState> GetAnimalsByType(AnimalData animalType)
+    {
+        return GetAnimalsByType(animalType.name);
+    }
+
+    public static void OnDayReset()
+    {
+        foreach (AnimalRelationshipState animal in AnimalStats.animalRelationships)
+        {
+            if (animal.hasTalkedToday)
+            {
+                animal.friendshipPoints += 30;
+            }
+            else
+            {
+                animal.friendshipPoints -= (10 - (animal.friendshipPoints / 200));
+            }
+
+            if (animal.giftGivenToday)
+            {
+                animal.Mood += 15;
+            }
+            else
+            {
+                animal.Mood -= 100;
+                animal.friendshipPoints -= 20;
+            }
+            animal.hasTalkedToday = false;
+            animal.giftGivenToday = false;
+
+            //advance the age of the animal
+            //animal.age += 1;
+        }
+    }
+
     //Get the animal data from the name
     public static AnimalData GetAnimalTypeFromString(string name)
     {

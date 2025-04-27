@@ -11,7 +11,7 @@ public class Feedbox : InteractableObject
         if (CanFeed())
         {
             //Feed the animal
-            FeedAnimal();   
+            FeedAnimal();
         }
     }
 
@@ -20,6 +20,8 @@ public class Feedbox : InteractableObject
         //Consume the item in the players hand
         InventoryManager.Instance.ConsumeItem(InventoryManager.Instance.GetEquippedSlot(InventorySlot.InventoryType.Item));
         SetFeedState(true);
+
+        FindObjectOfType<AnimalFeedManager>().FeedAnimal(id);
     }
 
     public void SetFeedState(bool feed)

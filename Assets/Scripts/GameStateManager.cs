@@ -34,20 +34,8 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
             npc.hasTalkedToday = false;
             npc.giftGivenToday = false;
         }
-
-        foreach (AnimalRelationshipState animal in AnimalStats.animalRelationships)
-        {
-            if (animal.hasTalkedToday)
-            {
-                animal.Mood += 15;
-            }
-            else
-            {
-                animal.Mood -= 10;
-            }
-            animal.hasTalkedToday = false;
-            animal.giftGivenToday = false;
-        }
+        AnimalFeedManager.ResetFeedboxes();
+        AnimalStats.OnDayReset();
     }
 
     public void ClockUpdate(GameTimestamp timestamp)

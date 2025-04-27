@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ac1b4c2a0c181b47a6a7c3517be35ba, type: 3}
+  m_Name: Chicken Feed
+  m_EditorClassIdentifier: 
+  description: Feed for chickens
+  thumbnail: {fileID: -1731833137, guid: 2b9d0ca97845ca64ea739c5f63035e11, type: 3}
+  gameModel: {fileID: 3599498206018651183, guid: fe17d0bcacbe103429d59cc3633ec133, type: 3}
+  cost: 10
