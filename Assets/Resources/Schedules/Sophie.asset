@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d2c5be8eb6558145861097ccd128dc0, type: 3}
+  m_Name: Sophie
+  m_EditorClassIdentifier: 
+  character: {fileID: 11400000, guid: cb72e32877c3a4a4881ec17632daf89f, type: 2}
+  npcScheduleList:
+  - name: Regular Work Day - Before Work
+    time:
+      year: 0
+      season: 0
+      day: 0
+      hour: 6
+      minute: 0
+    dayOfTheWeek: 0
+    priority: 0
+    factorDate: 0
+    ignoreDayOfTheWeek: 1
+    location: 1
+    coord: {x: -6.09, y: 1.150637, z: 23.13}
+    facing: {x: 0, y: 180}
+  - name: Regular Work Day - Store
+    time:
+      year: 0
+      season: 0
+      day: 0
+      hour: 8
+      minute: 0
+    dayOfTheWeek: 0
+    priority: 0
+    factorDate: 0
+    ignoreDayOfTheWeek: 1
+    location: 1
+    coord: {x: 10.22, y: 1.150637, z: 23.13}
+    facing: {x: 0, y: 213.214}
+  - name: Regular Work Day - After Hours
+    time:
+      year: 0
+      season: 0
+      day: 0
+      hour: 8
+      minute: 0
+    dayOfTheWeek: 0
+    priority: 0
+    factorDate: 0
+    ignoreDayOfTheWeek: 1
+    location: 1
+    coord: {x: -6.09, y: 1.150637, z: 6.8}
+    facing: {x: 0, y: 213.214}
+  - name: Tuesday 8-5
+    time:
+      year: 0
+      season: 0
+      day: 0
+      hour: 8
+      minute: 0
+    dayOfTheWeek: 3
+    priority: 1
+    factorDate: 0
+    ignoreDayOfTheWeek: 0
+    location: 1
+    coord: {x: -6.3, y: 1.150637, z: 23.13}
+    facing: {x: 0, y: 213.214}
+  - name: Sunday 8-5
+    time:
+      year: 0
+      season: 0
+      day: 0
+      hour: 8
+      minute: 0
+    dayOfTheWeek: 1
+    priority: 1
+    factorDate: 0
+    ignoreDayOfTheWeek: 0
+    location: 1
+    coord: {x: -6.3, y: 1.150637, z: 23.13}
+    facing: {x: 0, y: 213.214}

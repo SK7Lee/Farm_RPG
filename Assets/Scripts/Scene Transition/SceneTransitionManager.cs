@@ -3,21 +3,28 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class SceneTransitionManager : MonoBehaviour
 {
     public static SceneTransitionManager Instance;
-
+    //the scenes the player can be in
     public enum Location
     {
         Farm, Town, PlayerHome, ChickenCoop, Forest, YodelRanch 
     }
-
     public Location currentLocation;
-    static readonly Location[] indoor = {Location.PlayerHome, Location.ChickenCoop, Location.YodelRanch };
 
+    //list of all indoor locations
+    static readonly Location[] indoor = {Location.PlayerHome, Location.ChickenCoop, Location.YodelRanch };
+    // transform of the player
     Transform playerPoint;
+
+    //check if the screen has finished fading out
     bool screenFadedOut;
+
+    public UnityEvent onLocationLoad;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -93,6 +100,7 @@ public class SceneTransitionManager : MonoBehaviour
         playerCharacter.enabled = true;
 
         currentLocation = newLocation;
+        onLocationLoad?.Invoke();
     }
 
 }

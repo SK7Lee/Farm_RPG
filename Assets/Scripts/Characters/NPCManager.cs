@@ -47,6 +47,7 @@ public class NPCManager : MonoBehaviour, ITimeTracker
     {
         //add this to TimeManager to update NPCs
         TimeManager.Instance.RegisterTracker(this);
+        SceneTransitionManager.Instance.onLocationLoad.AddListener(RenderNPCs);
     }
 
     private void InitNPCLocations()
@@ -55,6 +56,17 @@ public class NPCManager : MonoBehaviour, ITimeTracker
         foreach (CharacterData character in Characters())
         {
             npcLocations.Add(new NPCLocationState(character));
+        }
+    }
+
+    void RenderNPCs()
+    {
+        foreach (NPCLocationState npc in npcLocations)
+        {
+            if (npc.location == SceneTransitionManager.Instance.currentLocation)
+            {
+                Instantiate(npc.character.prefab, npc.coord, Quaternion.Euler(npc.facing));
+            }
         }
     }
 
@@ -98,7 +110,7 @@ public class NPCManager : MonoBehaviour, ITimeTracker
             ScheduleEvent eventToExecute = eventsToConsider.OrderByDescending(x => x.priority).First();
             Debug.Log(eventToExecute.name); // Fix: Access the 'name' property of the selected ScheduleEvent instead of the list
             //set the npc locator value accordingly
-            npcLocations[i] = new NPCLocationState(schedule.character, eventToExecute.location, eventToExecute.coord);
+            npcLocations[i] = new NPCLocationState(schedule.character, eventToExecute.location, eventToExecute.coord, eventToExecute.facing);
         }
     }
 

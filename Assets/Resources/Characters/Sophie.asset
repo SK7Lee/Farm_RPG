@@ -22,6 +22,7 @@ MonoBehaviour:
   likes:
   - {fileID: 11400000, guid: f13a95282b910ca42953f7b6a46dc869, type: 2}
   dislikes: []
+  prefab: {fileID: 977283800405800904, guid: 45f1d88b87e18654487132a9b33da9af, type: 3}
   onFirstMeet:
   - speaker: Sophie
     message: Are you the new famer?

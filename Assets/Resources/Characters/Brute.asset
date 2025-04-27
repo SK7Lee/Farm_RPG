@@ -22,6 +22,7 @@ MonoBehaviour:
   likes:
   - {fileID: 11400000, guid: 771e4db91cab0b249ae148f3a9705df9, type: 2}
   dislikes: []
+  prefab: {fileID: 4482123016535237027, guid: 12234d34976c28a45bc8713b6e3613dd, type: 3}
   onFirstMeet:
   - speaker: Brute
     message: Are you the new famer on the block?
