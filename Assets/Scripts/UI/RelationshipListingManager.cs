@@ -22,7 +22,6 @@ public class RelationshipListingManager : ListingManager<NPCRelationshipState>
     }
     void LoadAllCharacters()
     {
-        CharacterData[] characterDatabase = Resources.LoadAll<CharacterData>("Characters");
-        characters = characterDatabase.ToList(); // No change needed here as the type now matches  
+        characters = NPCManager.Instance.Characters(); // Load characters from NPCManager
     }
 }

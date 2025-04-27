@@ -9,6 +9,7 @@ public class CharacterData : ScriptableObject
     public GameTimestamp birthday;
     public List<ItemData> likes;
     public List<ItemData> dislikes;
+    public GameObject prefab;
 
     [Header("Dialogue")]
     public List<DialogueLine> onFirstMeet;

@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ChickenCoop.unity
     guid: 69397969ffaf8374aa6e96926920199d
+  - enabled: 1
+    path: Assets/Scenes/Forest.unity
+    guid: 3a64a5e3752696141b6b95c98f402876
+  - enabled: 1
+    path: Assets/Scenes/YodelRanch.unity
+    guid: 7d73589741c5a3541bb27e57391d380f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

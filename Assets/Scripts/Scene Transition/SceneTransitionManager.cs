@@ -10,11 +10,11 @@ public class SceneTransitionManager : MonoBehaviour
 
     public enum Location
     {
-        Farm, Town, PlayerHome, ChickenCoop
+        Farm, Town, PlayerHome, ChickenCoop, Forest, YodelRanch 
     }
 
     public Location currentLocation;
-    static readonly Location[] indoor = {Location.PlayerHome, Location.ChickenCoop };
+    static readonly Location[] indoor = {Location.PlayerHome, Location.ChickenCoop, Location.YodelRanch };
 
     Transform playerPoint;
     bool screenFadedOut;

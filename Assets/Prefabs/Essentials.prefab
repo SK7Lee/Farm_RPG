@@ -3619,6 +3619,7 @@ GameObject:
   - component: {fileID: 6376383547434652436}
   - component: {fileID: 251965759218538645}
   - component: {fileID: 1776362899579210774}
+  - component: {fileID: 9133098848972256058}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -3674,7 +3675,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 765da126730796947a54292ae7788267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemIndex: {fileID: 11400000, guid: f51c46104542d474cb35cb1cfd461c67, type: 2}
   toolSlots:
   - itemData: {fileID: 11400000, guid: 15893137bb7eacb428566bc632eb019c, type: 2}
     quantity: 1
@@ -3781,6 +3781,18 @@ MonoBehaviour:
   dialoguePanel: {fileID: 4093797898353478821}
   speakerText: {fileID: 6524669097930543371}
   dialogueText: {fileID: 1387074940118145430}
+--- !u!114 &9133098848972256058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5492093632946859654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea8c5fe9c4e02f645b12a3f0895b2d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5668180512427675404
 GameObject:
   m_ObjectHideFlags: 0

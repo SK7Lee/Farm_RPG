@@ -1,0 +1,105 @@
+using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
+
+public class NPCManager : MonoBehaviour, ITimeTracker
+{
+    public static NPCManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+
+    }
+
+    List<CharacterData> characters = null;
+
+    List<NPCScheduleData> npcSchedules;
+
+    [SerializeField]
+    List<NPCLocationState> npcLocations;
+
+    //load all character data
+    public List<CharacterData> Characters()
+    {
+        if (characters != null) return characters;
+        CharacterData[] characterDatabase = Resources.LoadAll<CharacterData>("Characters");
+        characters = characterDatabase.ToList();
+        return characters;
+    }
+
+    private void OnEnable()
+    {
+        //load npc schedules
+        NPCScheduleData[] schedules = Resources.LoadAll<NPCScheduleData>("Schedules");
+        npcSchedules = schedules.ToList();
+        InitNPCLocations();
+    }
+
+    private void Start()
+    {
+        //add this to TimeManager to update NPCs
+        TimeManager.Instance.RegisterTracker(this);
+    }
+
+    private void InitNPCLocations()
+    {
+        npcLocations = new List<NPCLocationState>();
+        foreach (CharacterData character in Characters())
+        {
+            npcLocations.Add(new NPCLocationState(character));
+        }
+    }
+
+    public void ClockUpdate(GameTimestamp timestamp)
+    {
+        UpdateNPCLocations(timestamp);
+    }
+
+    private void UpdateNPCLocations(GameTimestamp timestamp)
+    {
+        for (int i = 0; i < npcLocations.Count; i++)
+        {
+            NPCLocationState npcLocator = npcLocations[i];
+            //find the schedule for the character
+            NPCScheduleData schedule = npcSchedules.Find(x => x.character == npcLocator.character);
+            if (schedule == null)
+            {
+                Debug.LogError($"No schedule found for {npcLocator.character.name}");
+                continue;
+            }
+
+            //current time
+            GameTimestamp.DayOfTheWeek dayOfWeek = timestamp.GetDayOfTheWeek();
+
+            //find the events that correspond to the current time
+            //either the day of the week matches or the time matches
+            List<ScheduleEvent> eventsToConsider = schedule.npcScheduleList.FindAll(x => x.time.hour <= timestamp.hour && (x.dayOfTheWeek == dayOfWeek || x.ignoreDayOfTheWeek));
+            //check if the events are empty
+            if (eventsToConsider.Count < 1)
+            {
+                Debug.LogError("None found for " + npcLocator.character.name);
+                Debug.LogError(timestamp.hour);
+                continue;
+            }
+
+            //remove all events with the hour that is lower than the max time
+            int maxHour = eventsToConsider.Max(x => x.time.hour);
+            eventsToConsider.RemoveAll(x => x.time.hour < maxHour);
+
+            // get the event with the highest priority
+            ScheduleEvent eventToExecute = eventsToConsider.OrderByDescending(x => x.priority).First();
+            Debug.Log(eventToExecute.name); // Fix: Access the 'name' property of the selected ScheduleEvent instead of the list
+            //set the npc locator value accordingly
+            npcLocations[i] = new NPCLocationState(schedule.character, eventToExecute.location, eventToExecute.coord);
+        }
+    }
+
+}
