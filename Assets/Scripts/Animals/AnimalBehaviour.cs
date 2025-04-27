@@ -6,6 +6,10 @@ public class AnimalBehaviour : InteractableObject
 {
     AnimalRelationshipState relationship;
     AnimalMovement movement;
+    AnimalRenderer animalRenderer;
+    [SerializeField]
+    WorldBubble speechBubble;
+
     public void Start()
     {
         movement = GetComponent<AnimalMovement>();
@@ -15,6 +19,8 @@ public class AnimalBehaviour : InteractableObject
     public void LoadRelationship(AnimalRelationshipState relationship)
     {
         this.relationship = relationship;
+        animalRenderer = GetComponent<AnimalRenderer>();
+        animalRenderer.RenderAnimal(relationship.age, relationship.animalType);
     }
 
     public override void Pickup()
@@ -73,6 +79,28 @@ public class AnimalBehaviour : InteractableObject
     {
         relationship.Mood += 30;
         relationship.hasTalkedToday = true;
+
+        //Set the speech bubble to true
+        speechBubble.gameObject.SetActive(true);
+        WorldBubble.Emote emote = WorldBubble.Emote.Thinking;
+
+        switch (relationship.Mood)
+        {
+            case int n when (n >= 200):
+                emote = WorldBubble.Emote.Heart;
+                break;
+            case int n when (n < 30):
+                emote = WorldBubble.Emote.Sad;
+                break;
+            case int n when (n >= 30 && n < 60):
+                emote = WorldBubble.Emote.BadMood;
+                break;
+            default:
+                emote = WorldBubble.Emote.Happy;
+                break;
+        }
+        speechBubble.Display(emote, 3f);
         Debug.Log("First conversation with " + relationship.name + " mood " + relationship.Mood);
+
     }
 }

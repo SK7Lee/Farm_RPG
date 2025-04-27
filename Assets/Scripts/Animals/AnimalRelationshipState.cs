@@ -7,6 +7,7 @@ public class AnimalRelationshipState : NPCRelationshipState
     const int MAX_MOOD = 255;
     private int _mood;
 
+    public int age;
     public int Mood
     {
         get => _mood;
