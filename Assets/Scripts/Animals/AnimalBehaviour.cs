@@ -4,13 +4,13 @@ using UnityEngine;
 [RequireComponent(typeof(AnimalMovement))]
 public class AnimalBehaviour : InteractableObject
 {
-    AnimalRelationshipState relationship;
-    AnimalMovement movement;
-    AnimalRenderer animalRenderer;
+    protected AnimalRelationshipState relationship;
+    protected AnimalMovement movement;
+    protected AnimalRenderer animalRenderer;
     [SerializeField]
-    WorldBubble speechBubble;
+    protected WorldBubble speechBubble;
 
-    public void Start()
+    protected virtual void Start()
     {
         movement = GetComponent<AnimalMovement>();
         

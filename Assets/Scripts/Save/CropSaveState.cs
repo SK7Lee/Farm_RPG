@@ -24,7 +24,7 @@ public struct CropSaveState
     {
         growth++;
 
-        SeedData seedInfo = (SeedData)InventoryManager.Instance.itemIndex.GetItemFromString(seedToGrow);
+        SeedData seedInfo = (SeedData)InventoryManager.Instance.GetItemFromString(seedToGrow);
         int maxGrowth =  GameTimestamp.HoursToMinutes(GameTimestamp.DaysToHours(seedInfo.daysToGrow));
         int maxHealth = GameTimestamp.HoursToMinutes(48);
 

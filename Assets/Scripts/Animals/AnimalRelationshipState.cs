@@ -6,8 +6,11 @@ public class AnimalRelationshipState : NPCRelationshipState
     public string animalType;
     const int MAX_MOOD = 255;
     private int _mood;
-
+    //age in days
     public int age;
+
+    public bool givenProduceToday;
+
     public int Mood
     {
         get => _mood;

@@ -73,7 +73,7 @@ public class ItemSlotData
 
     public static ItemSlotData DeserializeData(ItemSlotSaveData itemSaveSlot)
     {
-        ItemData item = InventoryManager.Instance.itemIndex.GetItemFromString(itemSaveSlot.itemID);
+        ItemData item = InventoryManager.Instance.GetItemFromString(itemSaveSlot.itemID);
         return new ItemSlotData(item, itemSaveSlot.quantity);
     }
 

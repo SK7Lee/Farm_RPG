@@ -113,7 +113,7 @@ public class LandManager : MonoBehaviour
         {
             Land landToPlant = landPlots[cropSave.landID];
             CropBehaviour cropToPlant = landToPlant.SpawnCrop();
-            SeedData seedToGrow = (SeedData) InventoryManager.Instance.itemIndex.GetItemFromString(cropSave.seedToGrow);
+            SeedData seedToGrow = (SeedData) InventoryManager.Instance.GetItemFromString(cropSave.seedToGrow);
             cropToPlant.LoadCrop(cropSave.landID, seedToGrow, cropSave.cropState, cropSave.growth, cropSave.health);
 
         }

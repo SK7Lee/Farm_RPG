@@ -65,7 +65,7 @@ public class AnimalStats : MonoBehaviour
             }
             animal.hasTalkedToday = false;
             animal.giftGivenToday = false;
-
+            animal.givenProduceToday = false;
             //advance the age of the animal
             animal.age += 1;
         }

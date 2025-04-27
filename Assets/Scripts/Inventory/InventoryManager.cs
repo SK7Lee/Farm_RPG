@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static InventorySlot;
 
@@ -17,8 +19,17 @@ public class InventoryManager : MonoBehaviour
             Instance = this;
         }
     }
+    
+    List<ItemData> _itemIndex;
 
-    public ItemIndex itemIndex;
+    public ItemData GetItemFromString(string name)
+    {
+        if (_itemIndex == null)
+        {
+            _itemIndex = Resources.LoadAll<ItemData>("").ToList();
+        }
+        return _itemIndex.Find( i => i.name == name);
+    }
 
     [Header("Tools")]
     [SerializeField] 
