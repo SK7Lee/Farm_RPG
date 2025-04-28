@@ -2,23 +2,18 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class AnimalMovement : MonoBehaviour
+public class AnimalMovement : CharacterMovement
 {
-    NavMeshAgent agent;
-
-    //Time before the navmesh agent can move again
+        //Time before the navmesh agent can move again
     [SerializeField] float cooldownTime;
     float cooldownTimer;
-    void Start()
+    protected override void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        base.Start();
         cooldownTimer = Random.Range(0, cooldownTime);
     }
 
-    public void ToggleMovement(bool enabled)
-    {
-        agent.enabled = enabled;
-    }
+
 
     // Update is called once per frame
     void Update()
@@ -28,6 +23,7 @@ public class AnimalMovement : MonoBehaviour
     
     void Wander()
     {
+        if (!agent.enabled) return;
         if (cooldownTimer > 0)
         {
             cooldownTimer -= Time.deltaTime;

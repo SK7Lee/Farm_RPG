@@ -70,16 +70,27 @@ public class NPCManager : MonoBehaviour, ITimeTracker
         }
     }
 
+    void SpawnInNPC(CharacterData npc, SceneTransitionManager.Location comingFrom)
+    {
+        Transform start = LocationManager.Instance.GetPlayerStartingPosition(comingFrom);
+        Instantiate(npc.prefab, start.position, start.rotation);
+    }
+
     public void ClockUpdate(GameTimestamp timestamp)
     {
         UpdateNPCLocations(timestamp);
     }
 
+    public NPCLocationState GetNPCLocation(string name)
+    {
+        return npcLocations.Find(x => x.character.name == name);
+    }
     private void UpdateNPCLocations(GameTimestamp timestamp)
     {
         for (int i = 0; i < npcLocations.Count; i++)
         {
             NPCLocationState npcLocator = npcLocations[i];
+            SceneTransitionManager.Location previousLocation = npcLocator.location;
             //find the schedule for the character
             NPCScheduleData schedule = npcSchedules.Find(x => x.character == npcLocator.character);
             if (schedule == null)
@@ -111,6 +122,17 @@ public class NPCManager : MonoBehaviour, ITimeTracker
             Debug.Log(eventToExecute.name); // Fix: Access the 'name' property of the selected ScheduleEvent instead of the list
             //set the npc locator value accordingly
             npcLocations[i] = new NPCLocationState(schedule.character, eventToExecute.location, eventToExecute.coord, eventToExecute.facing);
+            SceneTransitionManager.Location newLocation = eventToExecute.location;
+            //if there has been a change in location
+            if (newLocation != previousLocation)
+            {
+                Debug.Log("New location: " + newLocation);
+                //if the location is where we are
+                if (SceneTransitionManager.Instance.currentLocation == newLocation)
+                {
+                    SpawnInNPC(schedule.character, previousLocation);
+                }
+            }
         }
     }
 

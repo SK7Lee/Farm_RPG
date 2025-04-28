@@ -1,17 +1,39 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(CharacterMovement))]
 public class InteractableCharacter : InteractableObject
 {
     public CharacterData characterData;
+
+    //cache the relationship state of the character
     NPCRelationshipState relationship;
+
+    //default rotation of the character
     Quaternion defaulRotation;
+    //check if the character is turning
     bool isTurning = false;
+    CharacterMovement movement;
     private void Start()
     {
         relationship = RelationshipStats.GetRelationship(characterData);
+
+        movement = GetComponent<CharacterMovement>();
+        //cache the default rotation of the character
         defaulRotation = transform.rotation;
+        //add listener
+        GameStateManager.Instance.onIntervalUpdate.AddListener(OnIntervalUpdate);
+    }
+
+    void OnIntervalUpdate()
+    {
+        //get data on its location
+        NPCLocationState locationState = NPCManager.Instance.GetNPCLocation(characterData.name);
+        movement.MoveTo(locationState);
+        StartCoroutine(LookAt(Quaternion.Euler(locationState.facing)));
     }
 
     public override void Pickup()
@@ -36,8 +58,10 @@ public class InteractableCharacter : InteractableObject
 
     IEnumerator LookAt(Quaternion lookRot)
     {
+        //check if the coroutine is already running
         if (isTurning)
         {
+            //stop corooutine
             isTurning = false;
         }
         else
@@ -48,9 +72,12 @@ public class InteractableCharacter : InteractableObject
         {
             if (!isTurning) 
             {
+                //stop corooutine
+
                 yield break;
             }
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRot,Time.fixedDeltaTime *720);
+            //dont do anyting if the character is moving
+            if (!movement.IsMoving()) transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRot,Time.fixedDeltaTime *720);
             yield return new WaitForFixedUpdate();
         }
         isTurning = false;
@@ -64,6 +91,7 @@ public class InteractableCharacter : InteractableObject
     #region Conversation-related Functions
     void TriggerDialogue()
     {
+        movement.ToggleMovement(false);
         //check if player hold sth
         if (InventoryManager.Instance.SlotEquipped(InventorySlot.InventoryType.Item))
         {
@@ -71,10 +99,19 @@ public class InteractableCharacter : InteractableObject
             return;
         }
         List<DialogueLine> dialogueToHave = characterData.defaultDialogue;
-        //check to determine which dialogue to have
-        System.Action onDialogueEnd = null;
 
-        onDialogueEnd += ResetRotation;
+
+        //check to determine which dialogue to have
+        System.Action onDialogueEnd = () =>
+        {
+            //allow for movement
+            movement.ToggleMovement(true);
+            //continue going to its destination if it was on the way
+            //reset its initial position
+            OnIntervalUpdate();
+        };
+
+        //onDialogueEnd += ResetRotation;
         //is the player meeting for the firts time?
         if (RelationshipStats.FirstMeeting(characterData))
         {
@@ -92,17 +129,24 @@ public class InteractableCharacter : InteractableObject
     void GiftDialogue()
     {
         if (!EligibleForGift()) return;
-
+        //get the itemslotdata of what the player is holding
         ItemSlotData handSlot = InventoryManager.Instance.GetEquippedSlot(InventorySlot.InventoryType.Item);
         List<DialogueLine> dialogueToHave = characterData.neutralGiftDialogue;
 
         System.Action onDialogueEnd = () =>
         {
+            //continue going to its destination if it was on the way
+            //reset its initial position
+            OnIntervalUpdate();
+            //allow for movement
+            movement.ToggleMovement(true);
+            //mark gift as given for today
             relationship.giftGivenToday = true;
+            //remove the item from thee player's hand
             InventoryManager.Instance.ConsumeItem(handSlot);
         };
 
-        onDialogueEnd += ResetRotation;
+        //onDialogueEnd += ResetRotation;
 
         bool isBirthday = RelationshipStats.IsBirthday(characterData);
         //friendship points to add

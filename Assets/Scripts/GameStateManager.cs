@@ -3,12 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.Events;
 public class GameStateManager : MonoBehaviour, ITimeTracker
 {
     public static GameStateManager Instance { get; private set; }
 
     bool screenFadedOut;
+
+    //to track interval updates;
+    private int minutesElapsed = 0;
+
+    //event triggered every 15mins
+    public UnityEvent onIntervalUpdate;
+
     private void Awake()
     {
        if (Instance != null && Instance != this)
@@ -46,6 +53,16 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
         if (timestamp.hour == 0 && timestamp.minute == 0)
         {
             OnDayReset();
+        }
+        //call events 15mins
+        if (minutesElapsed >= 15)
+        {
+            minutesElapsed = 0;
+            onIntervalUpdate?.Invoke();
+        }
+        else
+        {
+            minutesElapsed++;
         }
     }
 
@@ -88,9 +105,9 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
 
             }
 
-            LandManager.farmData.Item2.ForEach((CropSaveState crop) => {
-                Debug.Log(crop.seedToGrow + "\n Health: " + crop.health + "\n Growth: " + crop.growth + "\n State: " + crop.cropState.ToString());
-            });
+            //LandManager.farmData.Item2.ForEach((CropSaveState crop) => {
+            //    Debug.Log(crop.seedToGrow + "\n Health: " + crop.health + "\n Growth: " + crop.growth + "\n State: " + crop.cropState.ToString());
+            //});
 
         }
     }

@@ -14,6 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 11400000, guid: cb72e32877c3a4a4881ec17632daf89f, type: 2}
   npcScheduleList:
+  - name: Default At Home
+    time:
+      year: 0
+      season: 0
+      day: 0
+      hour: 0
+      minute: 0
+    dayOfTheWeek: 0
+    priority: 0
+    factorDate: 0
+    ignoreDayOfTheWeek: 1
+    location: 1
+    coord: {x: -6.3, y: 1.150637, z: 23.13}
+    facing: {x: 0, y: 213.214}
   - name: Regular Work Day - Before Work
     time:
       year: 0
