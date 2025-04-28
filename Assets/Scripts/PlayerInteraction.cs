@@ -36,12 +36,14 @@ public class PlayerInteraction : MonoBehaviour
         if (other.tag == "Item")
         {
             selectedInteractable = other.GetComponent<InteractableObject>();
+            selectedInteractable.OnHover();
             return;
         }
 
         //Deselect
         if (selectedInteractable != null)
         {
+            selectedInteractable.OnMoveAway();
             selectedInteractable = null;
         }
 

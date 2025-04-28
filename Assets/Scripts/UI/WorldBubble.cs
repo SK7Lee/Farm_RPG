@@ -1,9 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
-public class WorldBubble : MonoBehaviour
+public class WorldBubble : WorldUI
 {
-    Transform cameraPos;
     [SerializeField]
     Animator speechAnimator;
 
@@ -12,12 +11,6 @@ public class WorldBubble : MonoBehaviour
         Happy, BadMood, Heart, Thinking, Sad
     }
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        cameraPos = FindObjectOfType<CameraController>().transform;
-    }
 
     public void Display(Emote mood)
     {
@@ -51,10 +44,4 @@ public class WorldBubble : MonoBehaviour
         ResetAnimator();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //look at camera
-        transform.rotation = cameraPos.rotation;
-    }
 }

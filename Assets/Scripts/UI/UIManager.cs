@@ -36,6 +36,7 @@ public class UIManager : MonoBehaviour, ITimeTracker
     [Header ("Prompts") ]
     public YesNoPrompt yesNoPrompt;
     public NamingPrompt namingPrompt;
+    [SerializeField] InteractBubble interactBubble;
 
     [Header("Player Stats")]
     public Text moneyText;
@@ -292,6 +293,18 @@ public class UIManager : MonoBehaviour, ITimeTracker
         {
             relationshipListingManager.Render(RelationshipStats.relationships);
         }
+    }
+
+    public void InteractPrompt(Transform item, string message, float offset)
+    {
+        interactBubble.gameObject.SetActive(true);
+        interactBubble.transform.position = item.transform.position + new Vector3(0, offset , 0);
+        interactBubble.Display(message);
+    }
+
+    public void DeactivateInteractPrompt()
+    {
+        interactBubble.gameObject.SetActive(false);
     }
 
 }

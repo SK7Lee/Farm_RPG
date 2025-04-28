@@ -21,7 +21,7 @@ public class CharacterMovement : MonoBehaviour
         //if the agent is disabled, return false
         if (!agent.enabled) return false;
         float v = agent.velocity.sqrMagnitude;
-        return v > 0;
+        return v > 0.25;
 
     }
 
