@@ -146,9 +146,17 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
 
     public GameSaveState ExportSaveState()
     {
+        
+        List<LandSaveState> landData = new List<LandSaveState>();
+        List<CropSaveState> cropData = new List<CropSaveState>();
         //Retrieve Farm Data
-        List<LandSaveState> landData = LandManager.farmData.Item1;
-        List<CropSaveState> cropData = LandManager.farmData.Item2;
+        if (LandManager.farmData != null) 
+        {
+            landData = LandManager.farmData.Item1;
+            cropData = LandManager.farmData.Item2;    
+        }
+
+
         //Retrieve Inventory Data
         ItemSlotData[] toolSlots = InventoryManager.Instance.GetInventorySlots(InventorySlot.InventoryType.Tool);
         ItemSlotData[] itemSlots = InventoryManager.Instance.GetInventorySlots(InventorySlot.InventoryType.Item);
@@ -158,12 +166,25 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
         GameTimestamp timestamp = TimeManager.Instance.GetGameTimestamp();
 
         return new GameSaveState(landData, cropData, toolSlots, itemSlots, equippedItemSlot, equippedToolSlot, timestamp,PlayerStats.Money, RelationshipStats.relationships, AnimalStats.animalRelationships, IncubationManager.eggsIncubating);
+        /*
+        //Retrieve Farm Data
+        FarmSaveState farmSaveState = FarmSaveState.Export();
+        //Retrieve Inventory Data
+        InventorySaveState inventorySaveState = InventorySaveState.Export();
+        //Time
+        GameTimestamp timestamp = TimeManager.Instance.GetGameTimestamp();
+        //Player Data
+        PlayerSaveState playerSaveState = PlayerSaveState.Export();
+        //Relationships
+        RelationshipSaveState relationshipSaveState = RelationshipSaveState.Export();
+        return new GameSaveState(farmSaveState, inventorySaveState, timestamp, playerSaveState, relationshipSaveState);
+        */
     }
  
     public void LoadSave()
     {
 
-
+        
         GameSaveState save = SaveManager.Load();
         //Time
         TimeManager.Instance.LoadTime(save.timestamp);
@@ -182,5 +203,18 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
         AnimalStats.LoadStats(save.animals);
         //Animals
         IncubationManager.eggsIncubating = save.eggsIncubating;
+        
+        /*
+        GameSaveState save = SaveManager.Load();
+        TimeManager.Instance.LoadTime(save.timestamp);
+        //Inventory
+        save.inventorySaveState.LoadData();
+        //Retrieve Farm Data
+        save.farmSaveState.LoadData();
+        //Player Data
+        save.playerSaveState.LoadData();
+        //Relationships
+        save.relationshipSaveState.LoadData();
+        */
     }
 }

@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [System.Serializable]
 public class GameSaveState 
 {
@@ -51,3 +52,36 @@ public class GameSaveState
         this.eggsIncubating = eggsIncubating;
     }
 }
+
+/*
+
+[System.Serializable]
+public class GameSaveState
+{
+    //Farm Data
+    public FarmSaveState farmSaveState;
+    //Inventory Data
+    public InventorySaveState inventorySaveState;
+    //Time Data
+    public GameTimestamp timestamp;
+    //Player Data
+    public PlayerSaveState playerSaveState;
+    //relationships
+    public RelationshipSaveState relationshipSaveState;
+
+    public GameSaveState(
+        FarmSaveState farmSaveState,
+        InventorySaveState inventorySaveState,
+        GameTimestamp timestamp,
+        PlayerSaveState playerSaveState,
+        RelationshipSaveState relationshipSaveState
+    )
+    {
+        this.farmSaveState = farmSaveState;
+        this.inventorySaveState = inventorySaveState;
+        this.timestamp = timestamp;
+        this.playerSaveState = playerSaveState;
+        this.relationshipSaveState = relationshipSaveState;
+    }
+}
+*/

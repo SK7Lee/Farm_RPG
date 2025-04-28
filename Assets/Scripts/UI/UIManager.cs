@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour, ITimeTracker
 {
     public static UIManager Instance { get; private set; }
-
+    public CalendarUIListing calendar;
     [Header("Status Bar")]
     public Image toolEquipSlot;
     public Text  toolQuantityText;

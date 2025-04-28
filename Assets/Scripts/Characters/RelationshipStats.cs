@@ -81,4 +81,20 @@ public class RelationshipStats : MonoBehaviour
         return (today.day == birthday.day) && (today.season == birthday.season);
     }
 
+    public static bool IsBirthday(CharacterData character, GameTimestamp today)
+    {
+        GameTimestamp birthday = character.birthday;
+        return (today.day == birthday.day) && (today.season == birthday.season);
+    } 
+    public static CharacterData WhoseBirthday(GameTimestamp timestamp)
+    {
+        foreach (CharacterData character in NPCManager.Instance.Characters())
+        {
+            if (IsBirthday(character, timestamp))
+            {
+                return character;
+            }
+        }
+        return null;
+    }
 }

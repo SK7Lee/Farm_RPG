@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   portrait: {fileID: 21300000, guid: 2b48c390e519b974daaacff2ce39a75a, type: 3}
   birthday:
-    year: 0
+    year: 1
     season: 0
-    day: 0
+    day: 5
     hour: 0
     minute: 0
   likes:

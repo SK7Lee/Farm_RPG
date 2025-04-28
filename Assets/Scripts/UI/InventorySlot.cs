@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;   
-using UnityEngine.EventSystems;   
-
+using UnityEngine.EventSystems;
+using TMPro;
 
 public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -9,7 +9,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     int quantity;
 
     public Image itemDisplayImage;
-    public Text quantityText;
+    public TextMeshProUGUI quantityText;
 
     //Type of inventory slot
     public enum InventoryType
