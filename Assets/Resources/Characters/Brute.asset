@@ -49,51 +49,61 @@ MonoBehaviour:
   dialogues:
   - id: Forest Dialogue
     conditions:
-    - keyName: Location
-      valueType: 0
-      intValue: 5
-      floatValue: 0
-      boolValue: 0
-      stringValue: 
-      vector3Value: {x: 0, y: 0, z: 0}
+    - blackboardEntryData:
+        keyName: Location
+        valueType: 0
+        intValue: 5
+        floatValue: 0
+        boolValue: 0
+        stringValue: 
+        vector3Value: {x: 0, y: 0, z: 0}
+      comparison: 0
     dialogueLine:
     - speaker: Brute
       message: Morning! Isn't it a nice day to go fishing?
   - id: Shop Friday Dialogue
     conditions:
-    - keyName: Location
-      valueType: 0
-      intValue: 3
-      floatValue: 0
-      boolValue: 0
-      stringValue: 
-      vector3Value: {x: 0, y: 0, z: 0}
-    - keyName: DayOfWeek
-      valueType: 3
-      intValue: 3
-      floatValue: 0
-      boolValue: 0
-      stringValue: 6
-      vector3Value: {x: 0, y: 0, z: 0}
+    - blackboardEntryData:
+        keyName: Location
+        valueType: 0
+        intValue: 3
+        floatValue: 0
+        boolValue: 0
+        stringValue: 
+        vector3Value: {x: 0, y: 0, z: 0}
+      comparison: 0
+    - blackboardEntryData:
+        keyName: DayOfWeek
+        valueType: 3
+        intValue: 0
+        floatValue: 0
+        boolValue: 0
+        stringValue: 6
+        vector3Value: {x: 0, y: 0, z: 0}
+      comparison: 0
     dialogueLine:
     - speaker: Brute
       message: Business has been really good tonight. I'm pleased.
   - id: Shop 2 Hearts
     conditions:
-    - keyName: Location
-      valueType: 0
-      intValue: 3
-      floatValue: 0
-      boolValue: 0
-      stringValue: 
-      vector3Value: {x: 0, y: 0, z: 0}
-    - keyName: Relationship
-      valueType: 3
-      intValue: 3
-      floatValue: 0
-      boolValue: 0
-      stringValue: 2
-      vector3Value: {x: 0, y: 0, z: 0}
+    - blackboardEntryData:
+        keyName: Location
+        valueType: 0
+        intValue: 3
+        floatValue: 0
+        boolValue: 0
+        stringValue: 
+        vector3Value: {x: 0, y: 0, z: 0}
+      comparison: 0
+    - blackboardEntryData:
+        keyName: Relationship
+        valueType: 3
+        intValue: 0
+        floatValue: 0
+        boolValue: 0
+        stringValue: 2
+        vector3Value: {x: 0, y: 0, z: 0}
+      comparison: 0
     dialogueLine:
     - speaker: Brute
       message: It's always good to see you!

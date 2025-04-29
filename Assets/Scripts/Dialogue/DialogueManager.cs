@@ -44,6 +44,7 @@ public class DialogueManager : MonoBehaviour
     //initiate the dialogue with a queue of dialogue lines
     public void StartDialogue(List<DialogueLine> dialogueLinesToQueue)
     {
+
         dialogueQueue = new Queue<DialogueLine>(dialogueLinesToQueue);
         UpdateDialogue();
     }

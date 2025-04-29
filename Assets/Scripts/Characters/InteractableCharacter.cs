@@ -113,7 +113,7 @@ public class InteractableCharacter : InteractableObject
 
         //onDialogueEnd += ResetRotation;
 
-        DialogueManager.SelectDialogue(dialogueToHave, characterData.dialogues);
+        dialogueToHave = DialogueManager.SelectDialogue(dialogueToHave, characterData.dialogues);
 
         //is the player meeting for the firts time?
         if (RelationshipStats.FirstMeeting(characterData))
