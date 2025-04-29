@@ -24,7 +24,7 @@ public class ChickenBehaviour : AnimalBehaviour
         {
             //lay an egg
             ItemData egg = InventoryManager.Instance.GetItemFromString("Egg");
-            Instantiate(egg.gameModel, transform.position, Quaternion.identity);
+            GameStateManager.Instance.PersistentInstantiate(egg.gameModel, transform.position, Quaternion.identity);
             relationship.givenProduceToday = true;
         }
     }

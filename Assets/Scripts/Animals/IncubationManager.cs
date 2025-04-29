@@ -37,6 +37,11 @@ public class IncubationManager : MonoBehaviour
                 //Get the animal data from the incubator ID
                 AnimalData chickenData = AnimalStats.GetAnimalTypeFromString("Chicken");
                 //Handle the chick hatching here
+                if (chickenData == null)
+                {
+                    Debug.LogError("Chicken AnimalData not found! Make sure there is a Chicken.asset in Resources/Animals");
+                    return;
+                }
                 AnimalStats.StartAnimalCreation(chickenData);
             }
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RelationshipStats : MonoBehaviour
 {
+    const string RELATIONSHIP_PREFIX = "NPCRelationship_";
     public static List<NPCRelationshipState> relationships = new List<NPCRelationshipState>();
     public enum GiftReaction
     {
@@ -11,30 +12,63 @@ public class RelationshipStats : MonoBehaviour
         Like,
         Dislike
     }
-    public static void LoadStats(List<NPCRelationshipState> relationshipsToLoad)
+    public static void LoadStats()
     {
+        relationships = new List<NPCRelationshipState>();
+        GameBlackboard blackboard = GameStateManager.Instance.GetBlackboard();
+
+        foreach (CharacterData c in NPCManager.Instance.Characters())
+        {
+            string key = RELATIONSHIP_PREFIX + c.name;
+            if (blackboard.ContainsKey(key) && blackboard.TryGetValue(key, out NPCRelationshipState rs))
+            {
+                relationships.Add(rs);
+            }
+            else
+            {
+                Debug.LogWarning($"Relationship data for {c.name} not found in the blackboard.");
+            }
+        }
+
+        /*
         if (relationshipsToLoad == null)
         {
             relationships = new List<NPCRelationshipState>();
             return;
         }
         relationships = relationshipsToLoad;
+        */
     }
     //check if the character is already in the list of relationships
     public static bool FirstMeeting(CharacterData character)
     {
-        return !relationships.Exists(i=>i.name == character.name);
+        GameBlackboard blackboard = GameStateManager.Instance.GetBlackboard();
+        return !blackboard.ContainsKey(RELATIONSHIP_PREFIX + character.name);
+        //return !relationships.Exists(i=>i.name == character.name);
     }
+
     //Get relationship state of a character
     public static NPCRelationshipState GetRelationship(CharacterData character)
     {
-        if (FirstMeeting(character)) return null;
-        return relationships.Find(i => i.name == character.name);
+        //check if it is the first meeting of the day
+        if (FirstMeeting(character))
+            return null;
+
+        var blackboard = GameStateManager.Instance.GetBlackboard();
+        if (blackboard.TryGetValue(RELATIONSHIP_PREFIX + character.name, out NPCRelationshipState rs))
+            return rs;
+
+        return null;
+
+        //return relationships.Find(i => i.name == character.name);
     }
     //Add character to the list of relationships
     public static void UnlockCharacter(CharacterData character)
     {
-        relationships.Add(new NPCRelationshipState(character.name));
+        GameBlackboard blackboard = GameStateManager.Instance.GetBlackboard();
+        NPCRelationshipState relationship = new NPCRelationshipState(character.name);
+        blackboard.SetValue(RELATIONSHIP_PREFIX + character.name, relationship);
+        relationships.Add(relationship);
     }
     //Add friendship points to a character
     public static void AddFriendshipPoints(CharacterData character, int points)

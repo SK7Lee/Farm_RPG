@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class RelationshipSaveState 
+public class RelationshipSaveState
 {
+
     public List<NPCRelationshipState> relationships;
     public List<AnimalRelationshipState> animals;
 
@@ -22,7 +23,8 @@ public class RelationshipSaveState
 
     public void LoadData()
     {
-        RelationshipStats.LoadStats(relationships);
-        AnimalStats.LoadStats(animals); 
+        RelationshipStats.LoadStats();
+        AnimalStats.LoadStats();
+        Debug.Log("Loaded relationship data");
     }
 }

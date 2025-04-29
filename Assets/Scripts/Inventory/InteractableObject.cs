@@ -21,8 +21,10 @@ public class InteractableObject : MonoBehaviour
         //update the changes in scene
         InventoryManager.Instance.RenderHand();
         //destroy the object
-        Destroy(gameObject);
+        OnMoveAway();
+        GameStateManager.Instance.PersistentDestroy(gameObject);
     }
+
 
     //when the player is hovering around the item
     public virtual void OnHover()

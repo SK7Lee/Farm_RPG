@@ -8,6 +8,11 @@ using UnityEngine.Events;
 public class SceneTransitionManager : MonoBehaviour
 {
     public static SceneTransitionManager Instance;
+    
+    //the blackboard key for location
+    const string LOCATION_KEY = "Location";
+    const string INDOORS = "CurrentlyIndoor";
+
     //the scenes the player can be in
     public enum Location
     {
@@ -99,7 +104,13 @@ public class SceneTransitionManager : MonoBehaviour
         playerPoint.position = startPoint.position;
         playerCharacter.enabled = true;
 
+        //save the current location that we just switched to
         currentLocation = newLocation;
+
+        GameBlackboard blackboard = GameStateManager.Instance.GetBlackboard();
+        blackboard.SetValue(LOCATION_KEY, currentLocation);
+        blackboard.SetValue(INDOORS, CurrentlyIndoor());
+
         onLocationLoad?.Invoke();
     }
 

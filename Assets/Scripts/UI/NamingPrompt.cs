@@ -2,13 +2,14 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class NamingPrompt : MonoBehaviour
 {
     [SerializeField]
     Text promptText;
     [SerializeField]
-    InputField inputField;
+    TMP_InputField inputField;
 
     Action<string> onConfirm;
     Action onPromptComplete;
