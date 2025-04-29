@@ -22,6 +22,8 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
     //this is blackboard will not be saved
     GameBlackboard sceneItemsBoard = new GameBlackboard();
 
+    const string TIMESTAMP = "Timestamp";
+
     public GameBlackboard GetBlackboard()
     {
         return blackboard;
@@ -61,6 +63,8 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
         UpdateShippingState(timestamp);
         UpdateFarmState(timestamp);
         IncubationManager.UpdateEggs();
+        blackboard.SetValue(TIMESTAMP, timestamp);
+
         if (timestamp.hour == 0 && timestamp.minute == 0)
         {
             OnDayReset();

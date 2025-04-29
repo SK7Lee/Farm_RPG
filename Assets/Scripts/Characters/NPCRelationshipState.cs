@@ -19,8 +19,8 @@ public class NPCRelationshipState
         this.name = name;
         friendshipPoints = 0;
     }
-    public float Hearts()
+    public int Hearts
     {
-        return friendshipPoints / 250;
+        get { return friendshipPoints / 250; }
     }
 }

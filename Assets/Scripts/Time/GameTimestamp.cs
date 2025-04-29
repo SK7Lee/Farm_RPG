@@ -81,6 +81,12 @@ public class GameTimestamp
         }
     }
 
+
+    public DayOfTheWeek DayOfWeek
+    {
+        get { return GetDayOfTheWeek(); }
+    }
+    
     public DayOfTheWeek GetDayOfTheWeek()
     {
         int daysPassed = YearsToSeasons(year) + SeasonsToDays(season) + day;

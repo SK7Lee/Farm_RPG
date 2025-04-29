@@ -255,11 +255,14 @@ public class UIManager : MonoBehaviour, ITimeTracker
 
         string prefix = "AM ";
 
-        if (hours > 12)
+        if (hours >= 12)
         {
             prefix = "PM ";
             hours -= 12;
+            Debug.Log(hours);
         }
+        //special case for 12am/pm
+        hours = hours == 0? 12 : hours;
 
         timeText.text = prefix + hours + ":" + minutes.ToString("00");
 

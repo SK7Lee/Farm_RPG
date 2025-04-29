@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[System.Serializable]
 public struct BlackboardEntryData 
 {
     //name of the key on the blackboard

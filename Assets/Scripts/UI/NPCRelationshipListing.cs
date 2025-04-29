@@ -17,14 +17,14 @@ public class NPCRelationshipListing : MonoBehaviour
 
         portraitImage.sprite = characterData.portrait;
         nameText.text = relationship.name;
-        DisplayHearts(relationship.Hearts());
+        DisplayHearts(relationship.Hearts);
     }
 
     public void Display(AnimalData animalData, AnimalRelationshipState relationship)
     {
         portraitImage.sprite = animalData.portrait;
         nameText.text = relationship.name;
-        DisplayHearts(relationship.Hearts());
+        DisplayHearts(relationship.Hearts);
     }
 
     void DisplayHearts(float number)
