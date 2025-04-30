@@ -54,7 +54,7 @@ MonoBehaviour:
         boolValue: 0
         stringValue: 
         vector3Value: {x: 0, y: 0, z: 0}
-      comparison: 3
+      comparison: 1
     dialogueLine:
     - speaker: Sophie
       message: My bones tell me it is exactly 10 am in the morning.
