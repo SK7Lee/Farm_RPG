@@ -112,6 +112,8 @@ public class SceneTransitionManager : MonoBehaviour
         blackboard.SetValue(INDOORS, CurrentlyIndoor());
 
         onLocationLoad?.Invoke();
+
+        CutsceneManager.Instance.OnLocationLoad();
     }
 
 }

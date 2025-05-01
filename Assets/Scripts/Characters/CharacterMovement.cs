@@ -52,4 +52,9 @@ public class CharacterMovement : MonoBehaviour
         Vector3 destination = LocationManager.Instance.GetExitPosition(nextLocation).position;
         agent.SetDestination(destination);
     }
+
+    public void MoveTo(Vector3 pos)
+    {
+        agent.SetDestination(pos);
+    }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 public class NPCManager : MonoBehaviour, ITimeTracker
 {
     public static NPCManager Instance { get; private set; }
-
+    bool paused;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -41,6 +41,23 @@ public class NPCManager : MonoBehaviour, ITimeTracker
         NPCScheduleData[] schedules = Resources.LoadAll<NPCScheduleData>("Schedules");
         npcSchedules = schedules.ToList();
         InitNPCLocations();
+    }
+
+    public void Pause()
+    {
+        paused = true;
+        //kill all npcs
+        InteractableCharacter[] npcs = Object.FindObjectsByType<InteractableCharacter>(sortMode: default);
+        foreach (InteractableCharacter npc in npcs)
+        {
+            Destroy(npc);
+        }
+    }
+
+    public void Continue()
+    {
+        paused = false;
+        RenderNPCs();
     }
 
     private void Start()
@@ -85,8 +102,11 @@ public class NPCManager : MonoBehaviour, ITimeTracker
     {
         return npcLocations.Find(x => x.character.name == name);
     }
+
     private void UpdateNPCLocations(GameTimestamp timestamp)
     {
+        if (paused) return;
+
         for (int i = 0; i < npcLocations.Count; i++)
         {
             NPCLocationState npcLocator = npcLocations[i];
