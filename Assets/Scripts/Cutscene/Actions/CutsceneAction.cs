@@ -7,6 +7,7 @@ public abstract class CutsceneAction : ScriptableObject
     public void Init(Action onExecutionComplete)
     {
         this.onExecutionComplete = onExecutionComplete;
+        Execute();
     }
     public abstract void Execute();
     public void Complete()

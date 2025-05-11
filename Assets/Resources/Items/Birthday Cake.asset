@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b654c714c07fe140aeb0ac6d8d4d1b4, type: 3}
+  m_Name: Birthday Cake
+  m_EditorClassIdentifier: 
+  description: ' A festive, delicious cake decorated with colorful frosting and sprinkles.'
+  thumbnail: {fileID: 21300000, guid: 682b1783f5c4bb64bbaf6a42dc3a433b, type: 3}
+  gameModel: {fileID: 919132149155446097, guid: 9122cee978e1d9a4799eddc05c998f7c, type: 3}
+  cost: 1000
+  staminaRestore: 50

@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d2c5be8eb6558145861097ccd128dc0, type: 3}
+  m_Name: Abby
+  m_EditorClassIdentifier: 
+  character: {fileID: 11400000, guid: cd5d175a4883fbc44bb2689cc375f0c2, type: 2}
+  npcScheduleList:
+  - name: Default
+    time:
+      year: 0
+      season: 0
+      day: 0
+      hour: 0
+      minute: 0
+    dayOfTheWeek: 0
+    priority: 0
+    factorDate: 0
+    ignoreDayOfTheWeek: 1
+    location: 6
+    coord: {x: -15.64, y: 0.01, z: -3.23}
+    facing: {x: 0, y: 0}
+  - name: Morning Forage
+    time:
+      year: 0
+      season: 0
+      day: 0
+      hour: 5
+      minute: 0
+    dayOfTheWeek: 0
+    priority: 0
+    factorDate: 0
+    ignoreDayOfTheWeek: 1
+    location: 4
+    coord: {x: 6.24, y: 7.3, z: 29.64}
+    facing: {x: 0, y: 0}
+  - name: Town
+    time:
+      year: 0
+      season: 0
+      day: 0
+      hour: 7
+      minute: 0
+    dayOfTheWeek: 0
+    priority: 0
+    factorDate: 0
+    ignoreDayOfTheWeek: 1
+    location: 1
+    coord: {x: 33.107, y: 27.71608, z: 36.67143}
+    facing: {x: 0, y: 132.186}
+  - name: Breakfast Preparation
+    time:
+      year: 0
+      season: 0
+      day: 0
+      hour: 8
+      minute: 0
+    dayOfTheWeek: 0
+    priority: 0
+    factorDate: 0
+    ignoreDayOfTheWeek: 1
+    location: 6
+    coord: {x: 2.76, y: 0.00999999, z: 0.28}
+    facing: {x: 0, y: -98.421}
+  - name: Town
+    time:
+      year: 0
+      season: 0
+      day: 0
+      hour: 14
+      minute: 0
+    dayOfTheWeek: 0
+    priority: 0
+    factorDate: 0
+    ignoreDayOfTheWeek: 1
+    location: 1
+    coord: {x: 33.107, y: 27.71608, z: 36.67143}
+    facing: {x: 0, y: 132.186}
+  - name: Evening Inn
+    time:
+      year: 0
+      season: 0
+      day: 0
+      hour: 17
+      minute: 0
+    dayOfTheWeek: 0
+    priority: 0
+    factorDate: 0
+    ignoreDayOfTheWeek: 1
+    location: 6
+    coord: {x: -2.818398, y: -1.591887, z: -3.288776}
+    facing: {x: 0, y: -98.421}

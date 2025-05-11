@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
-using UnityEditor.ShaderGraph;
 public class GameStateManager : MonoBehaviour, ITimeTracker
 {
     public static GameStateManager Instance { get; private set; }
+    public GameObject[] nightLights { get; private set; }
 
     bool screenFadedOut;
 
@@ -24,6 +24,7 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
 
     const string TIMESTAMP = "Timestamp";
 
+    
     public GameBlackboard GetBlackboard()
     {
         return blackboard;
@@ -69,6 +70,13 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
         {
             OnDayReset();
         }
+
+        //6.01am do rain on land logic
+        if (timestamp.hour == 6 && timestamp.minute == 1)
+        {
+            RainOnLand();
+        }
+
         //call events 15mins
         if (minutesElapsed >= 15)
         {
@@ -79,6 +87,21 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
         {
             minutesElapsed++;
         }
+
+        //the lights will turn on at 6pm
+        nightLights = GameObject.FindGameObjectsWithTag("Lights");
+        foreach (GameObject i in nightLights)
+        {
+            if (timestamp.hour >= 18)
+            {
+                i.GetComponent<Light>().enabled = true;
+            }
+            else
+            {
+                i.GetComponent<Light>().enabled = false;
+            }
+        }
+
     }
 
     void UpdateShippingState(GameTimestamp timestamp) 
@@ -88,6 +111,27 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
             ShippingBin.ShipItems();
         }
     }
+
+    void RainOnLand()
+    {
+        //check if raining
+        if (WeatherManager.Instance.WeatherToday != WeatherData.WeatherType.Rain)
+        {
+            return;
+        }
+        //retrieve the land and farm data from the static variable
+        List<LandSaveState> landData = LandManager.farmData.Item1;
+
+        for (int i = 0; i < landData.Count; i++)
+        {
+            //set the last watered to now
+            if (landData[i].landStatus != Land.LandStatus.Soil)
+            {
+                landData[i] = new LandSaveState(Land.LandStatus.Watered, TimeManager.Instance.GetGameTimestamp(), landData[i].obstacleStatus);
+            }
+        }
+    }
+
     void UpdateFarmState(GameTimestamp timestamp)
     {
         if (SceneTransitionManager.Instance.currentLocation != SceneTransitionManager.Location.Farm)
@@ -160,9 +204,12 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
 
     public void Sleep()
     {
+        //cal fadeout
         UIManager.Instance.FadeOutScreen();
         screenFadedOut = false;
         StartCoroutine(TransitionTime());
+        //restore stamina
+        PlayerStats.RestoreStamina();
     }
 
     IEnumerator TransitionTime()
@@ -210,7 +257,16 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
 
         RelationshipSaveState relationshipSaveState = RelationshipSaveState.Export();
 
-        return new GameSaveState(blackboard, farmSaveState, inventorySaveState, timestamp, playerSaveState);
+        WeatherSaveState weatherSaveState = WeatherSaveState.Export();
+        return new GameSaveState(blackboard,
+                                farmSaveState,
+                                inventorySaveState,
+                                timestamp,
+                                playerSaveState,
+                                weatherSaveState,
+                                AudioManager.instance.GetVolume(),          // music volume
+                        SFXManager.instance.GetVolume(),            // sfx volume
+                AudioManager.instance.GetCurrentMusicIndex()); // current music index);
 
     }
 
@@ -219,7 +275,9 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
 
         
         GameSaveState save = SaveManager.Load();
-
+        AudioManager.instance.SetVolume(save.musicVolume);
+        SFXManager.instance.SetVolume(save.sfxVolume);
+        AudioManager.instance.SetCurrentMusicIndex(save.currentMusicIndex);
         blackboard = save.blackboard;
         blackboard.Debug();
         //Time
@@ -232,11 +290,14 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
         //LandManager.farmData = new System.Tuple<List<LandSaveState>, List<CropSaveState>>(save.landData, save.cropData);
         save.farmSaveState.LoadData();
 
+        save.weatherSaveState.LoadData();
         //Currency
         //PlayerStats.LoadStats(save.money);
         save.playerSaveState.LoadData();
         RelationshipStats.LoadStats();
         AnimalStats.LoadStats();
+
+
 
     }
 }

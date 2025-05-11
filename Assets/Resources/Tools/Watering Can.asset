@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Watering Can
   m_EditorClassIdentifier: 
   description: For watering the plants to make them grow
-  thumbnail: {fileID: 982575068, guid: 2cdbb6acd7de1ca47965d5fd9cc84133, type: 3}
-  gameModel: {fileID: 0}
+  thumbnail: {fileID: 21300000, guid: a5530e317b639ae40b0fab4a601bb81d, type: 3}
+  gameModel: {fileID: 3299345107289054424, guid: 9f20c95154c279b4d8b05cb422b98652, type: 3}
+  cost: 0
   toolType: 1

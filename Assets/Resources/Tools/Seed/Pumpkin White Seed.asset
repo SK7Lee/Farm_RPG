@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f6ee7486d54e054b9e53a5668121a10, type: 3}
+  m_Name: Pumpkin White Seed
+  m_EditorClassIdentifier: 
+  description: Seeds to grow pumpkin white
+  thumbnail: {fileID: 21300000, guid: c8aeb753d37f32e4bb3ad52a6e606ee4, type: 3}
+  gameModel: {fileID: 0}
+  cost: 80
+  daysToGrow: 2
+  cropToYeild: {fileID: 11400000, guid: 11f81b5033c2ea2498b9ccd47e6849c5, type: 2}
+  seedling: {fileID: 6571576751185432040, guid: 727bfd8a7b101e8488fb7935f1846d22, type: 3}
+  regrowable: 0
+  daysToRegrow: 0

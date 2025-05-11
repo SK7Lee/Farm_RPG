@@ -126,8 +126,8 @@ MonoBehaviour:
   onInteract:
     m_PersistentCalls:
       m_Calls: []
-  interactText: Interact
-  offset: 1.5
+  interactText: Watch
+  offset: 1
 --- !u!1001 &4009500574961279449
 PrefabInstance:
   m_ObjectHideFlags: 0

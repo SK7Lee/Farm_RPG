@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,9 +13,15 @@ public class ShopListingManager : ListingManager<ItemData>
     [Header("Confirmation Screen")]
     public GameObject confirmationScreen;
     public Text confirmationPrompt;
+    public Image confirmationItemImage;
     public Text quantityText;
     public Text costCalculationText;
     public Button purchaseButton;
+
+    [Header("Grid Settings")]
+    public GridLayoutGroup gridLayoutGroup;
+
+
     /*
         public void RenderShop(List<ItemData> shopItems)
         {
@@ -42,6 +49,12 @@ public class ShopListingManager : ListingManager<ItemData>
 
     }
 
+    protected override void OnRenderComplete()
+    {
+        AdjustGridHeight();
+    }
+
+
     public void OpenConfirmationScreen(ItemData item)
     {
         itemToBuy = item;
@@ -54,6 +67,9 @@ public class ShopListingManager : ListingManager<ItemData>
         confirmationScreen.SetActive(true);
         confirmationPrompt.text = $"Do you want to buy {itemToBuy.name}?";
         quantityText.text = $"x" + quantity;
+
+        confirmationItemImage.sprite = itemToBuy.thumbnail;
+
         int cost = itemToBuy.cost * quantity;
         int playerMoneyLeft = PlayerStats.Money - cost;
         //if not enough money, show error message
@@ -66,6 +82,18 @@ public class ShopListingManager : ListingManager<ItemData>
         purchaseButton.interactable = true;
         costCalculationText.text = $"{PlayerStats.Money} > {playerMoneyLeft} ";
     }
+
+    void AdjustGridHeight()
+    {
+        int itemCount = listingGrid.childCount;
+        int rows = Mathf.CeilToInt(itemCount / (float)gridLayoutGroup.constraintCount);
+        float heightPerItem = gridLayoutGroup.cellSize.y + gridLayoutGroup.spacing.y;
+        float totalHeight = rows * heightPerItem;
+
+        RectTransform rt = gridLayoutGroup.GetComponent<RectTransform>();
+        rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, totalHeight);
+    }
+
 
     public void AddQuantity()
     {

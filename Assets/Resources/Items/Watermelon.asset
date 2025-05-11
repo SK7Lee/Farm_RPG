@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 'A large, juicy fruit with green rind and red flesh         '
   thumbnail: {fileID: 21300000, guid: 0a7345b1413b4c546bb84906a2a5613e, type: 3}
-  gameModel: {fileID: 0}
-  cost: 0
+  gameModel: {fileID: 6547151293682264387, guid: b772629b4b87a674094d211c4a4f75ca, type: 3}
+  cost: 250

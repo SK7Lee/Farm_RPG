@@ -509,7 +509,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactText: Talk
-  offset: 1.5
+  offset: 2
   characterData: {fileID: 11400000, guid: cb72e32877c3a4a4881ec17632daf89f, type: 2}
 --- !u!65 &6234145886838664249
 BoxCollider:

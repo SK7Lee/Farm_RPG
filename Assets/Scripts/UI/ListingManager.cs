@@ -25,4 +25,6 @@ public abstract class ListingManager<T> : MonoBehaviour
     }
 
     protected abstract void DisplayListing(T listingItem,GameObject listingGameObject);
+
+    protected virtual void OnRenderComplete() { }
 }

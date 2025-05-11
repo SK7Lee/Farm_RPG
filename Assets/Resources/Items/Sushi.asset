@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b654c714c07fe140aeb0ac6d8d4d1b4, type: 3}
+  m_Name: Sushi
+  m_EditorClassIdentifier: 
+  description: Delicately rolled rice and fresh fish wrapped in seaweed, a Japanese
+    classic.
+  thumbnail: {fileID: 21300000, guid: 55e2b257460c54f42a5acd5613c39697, type: 3}
+  gameModel: {fileID: 919132149155446097, guid: 2362938f85ce0034487a898ebf07d2b9, type: 3}
+  cost: 800
+  staminaRestore: 40

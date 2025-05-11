@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,6 +38,7 @@ public class InteractableCharacter : InteractableObject
 
     public override void Pickup()
     {
+
         LookAtPlayer();
         TriggerDialogue();
     }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -210,9 +210,14 @@ public class InventoryManager : MonoBehaviour
         {
             Destroy(handPoint.GetChild(0).gameObject);
         }
+
         if (SlotEquipped(InventorySlot.InventoryType.Item))
         {
-            Instantiate(GetEquippedSlotItem(InventorySlot.InventoryType.Item).gameModel, handPoint);
+            var itemData = GetEquippedSlotItem(InventorySlot.InventoryType.Item);
+            if (itemData != null && itemData.gameModel != null)
+            {
+                Instantiate(itemData.gameModel, handPoint);
+            }
         }
     }
 

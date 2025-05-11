@@ -21,7 +21,7 @@ public class GameBlackboard
         foreach (var entry in entries)
         {
             string key = entry.Key.ToString();
-            UnityEngine.Debug.Log($"key: {key} value: {entry.Value}");
+            //UnityEngine.Debug.Log($"key: {key} value: {entry.Value}");
 
         }
     }
@@ -39,6 +39,51 @@ public class GameBlackboard
         return value;
 
     }
+
+    public bool TryGetValueAsString(string key, out string value)
+    {
+        value = default;
+        if (TryGetValue<string>(key, out string strValue))
+        {
+            value = strValue;
+            return true;
+        }
+
+        if (TryGetValue<bool>(key, out bool boolValue))
+        {
+            value = boolValue.ToString();
+            return true;
+        }
+
+        if (TryGetValue(key, out int intValue))
+        {
+            value = intValue.ToString();
+            return true;
+        }
+
+        if (TryGetValue(key, out float floatValue))
+        {
+            value = floatValue.ToString();
+            return true;
+        }
+
+        if (TryGetValue(key,out Vector3 vectorValue))
+        {
+            value = vectorValue.ToString();
+            return true;
+        }
+
+        if (TryGetValue(key, out Vector2 vector2Value))
+        {
+            value = vector2Value.ToString();
+            return true;
+        }
+
+        return false;
+
+    }
+
+
 
     //Try to get the value according to the type
     public bool TryGetValue<T>(string key, out T value)

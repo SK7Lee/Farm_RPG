@@ -8,6 +8,7 @@ public class SpeechAction : CutsceneAction
 
     public override void Execute()
     {
+        Debug.Log("Cutscene: Executing Speech Action");
         DialogueManager.Instance.StartDialogue(dialogueLines, onExecutionComplete);
     }
 }

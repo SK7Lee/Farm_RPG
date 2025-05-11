@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b654c714c07fe140aeb0ac6d8d4d1b4, type: 3}
+  m_Name: Corn-dog
+  m_EditorClassIdentifier: 
+  description: A hot dog coated in a crispy, golden cornmeal batter.
+  thumbnail: {fileID: 21300000, guid: 1c652283a1e9e8446896d0d8656debc9, type: 3}
+  gameModel: {fileID: 919132149155446097, guid: a4f0da2c06f03b04eb4038850843e672, type: 3}
+  cost: 150
+  staminaRestore: 15

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: A round orange fruit used in cooking
   thumbnail: {fileID: 21300000, guid: 9b87ab51712e1ca499afb2d9d80e5bdc, type: 3}
-  gameModel: {fileID: 0}
-  cost: 0
+  gameModel: {fileID: 291852774955448421, guid: 7cc02a1cbf95c344296ebc0b43c5d7ab, type: 3}
+  cost: 150

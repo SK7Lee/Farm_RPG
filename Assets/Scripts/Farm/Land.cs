@@ -193,6 +193,13 @@ public class Land : MonoBehaviour, ITimeTracker
 
     public void ClockUpdate(GameTimestamp timestamp)
     {
+        //when raining, have it watered if it is farmland
+        if (WeatherManager.Instance.WeatherToday == WeatherData.WeatherType.Rain && landStatus == LandStatus.Farmland)
+        {
+            SwitchLandStatus(LandStatus.Watered);
+        }
+
+        //check if 24hours since last watered
         if (landStatus == LandStatus.Watered)
         {
             int hoursElapsed = GameTimestamp.CompareTimestamps(timeWatered, timestamp);

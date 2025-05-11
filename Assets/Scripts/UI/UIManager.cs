@@ -1,4 +1,4 @@
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +23,9 @@ public class UIManager : MonoBehaviour, ITimeTracker
 
     public InventorySlot[] toolSlots;
     public InventorySlot[] itemSlots;
+    [SerializeField] private Transform itemInventoryContent;
+    [SerializeField] private Transform toolInventoryContent;
+    [SerializeField] private InventorySlot inventorySlotPrefab;
 
     [Header("Item info box")]
     public GameObject ItemInfoBox;
@@ -58,6 +61,15 @@ public class UIManager : MonoBehaviour, ITimeTracker
     }
     public Tab selectedTab;
 
+    [Header("Stamina")]
+    public Sprite[] staminaUI;
+    public Image StaminaUIImage;
+    public int staminaCount;
+
+    [Header("Weather")]
+    public Sprite[] weatherUI;
+    public Image WeatherUIImage;
+
     private void Awake()
     {
         //If there is more than one instance of this class, destroy the new one
@@ -74,10 +86,13 @@ public class UIManager : MonoBehaviour, ITimeTracker
 
     private void Start()
     {
+
+        PlayerStats.RestoreStamina();
         //Render the inventory screen to reflect the current inventory
         RenderInventory();
         AssignSlotIndex();
         RenderPlayerStats();
+        ChangeWeatherUI();
         DisplayItemInfo(null);
         TimeManager.Instance.RegisterTracker(this);
 
@@ -180,6 +195,7 @@ public class UIManager : MonoBehaviour, ITimeTracker
     }
 
     // Render the inventory screen to reflect the current inventory
+    /*
     public void RenderInventory()
     {
 
@@ -216,6 +232,61 @@ public class UIManager : MonoBehaviour, ITimeTracker
         toolEquipSlot.gameObject.SetActive(false);
 
     }
+    */
+
+    private void RenderInventorySection(ItemSlotData[] slots, Transform content, InventorySlot.InventoryType type)
+    {
+        // Clear existing slots
+        foreach (Transform child in content)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // Create new slots dynamically
+        for (int i = 0; i < slots.Length; i++)
+        {
+            InventorySlot slot = Instantiate(inventorySlotPrefab, content);
+            slot.AssignIndex(i);
+            slot.inventoryType = type;
+            slot.Display(slots[i]);
+        }
+    }
+
+    public void RenderInventory()
+    {
+        // Render Tool inventory using ScrollView
+        ItemSlotData[] inventoryToolSlots = InventoryManager.Instance.GetInventorySlots(InventorySlot.InventoryType.Tool);
+        RenderInventorySection(inventoryToolSlots, toolInventoryContent, InventorySlot.InventoryType.Tool);
+
+        // Render Item inventory using ScrollView
+        ItemSlotData[] inventoryItemSlots = InventoryManager.Instance.GetInventorySlots(InventorySlot.InventoryType.Item);
+        RenderInventorySection(inventoryItemSlots, itemInventoryContent, InventorySlot.InventoryType.Item);
+
+        // Render equipped slots
+        toolHandSlot.Display(InventoryManager.Instance.GetEquippedSlot(InventorySlot.InventoryType.Tool));
+        itemHandSlot.Display(InventoryManager.Instance.GetEquippedSlot(InventorySlot.InventoryType.Item));
+
+        // Tool Equip UI
+        ItemData equippedTool = InventoryManager.Instance.GetEquippedSlotItem(InventorySlot.InventoryType.Tool);
+        toolQuantityText.text = "";
+
+        if (equippedTool != null)
+        {
+            toolEquipSlot.sprite = equippedTool.thumbnail;
+            toolEquipSlot.gameObject.SetActive(true);
+
+            int quantity = InventoryManager.Instance.GetEquippedSlot(InventorySlot.InventoryType.Tool).quantity;
+            if (quantity > 1)
+            {
+                toolQuantityText.text = quantity.ToString();
+            }
+
+            return;
+        }
+
+        toolEquipSlot.gameObject.SetActive(false);
+    }
+
 
     void RenderInvertoryPanel(ItemSlotData[] slots, InventorySlot[] uiSlots)
     {
@@ -279,6 +350,40 @@ public class UIManager : MonoBehaviour, ITimeTracker
     public void RenderPlayerStats()
     {
         moneyText.text = PlayerStats.Money + PlayerStats.CURRENCY;
+        staminaCount = PlayerStats.Stamina;
+        ChangeStaminaUI();
+                
+    }
+
+    public void ChangeStaminaUI()
+    {
+        if (staminaCount <= 45) StaminaUIImage.sprite = staminaUI[3]; //exhausted
+        else if (staminaCount <= 80) StaminaUIImage.sprite = staminaUI[2]; //tired
+        else if (staminaCount <= 115) StaminaUIImage.sprite = staminaUI[1]; //active
+        else if (staminaCount <= 150) StaminaUIImage.sprite = staminaUI[0]; //energised
+    }
+
+    public void ChangeWeatherUI()
+    {
+        var WeatherToday = WeatherManager.Instance.WeatherToday;
+        switch (WeatherToday)
+        {
+            case WeatherData.WeatherType.Sunny:
+                WeatherUIImage.sprite = weatherUI[0];
+                break;
+            case WeatherData.WeatherType.Rain:
+                WeatherUIImage.sprite=weatherUI[1];
+                break;
+            case WeatherData.WeatherType.Snow:
+                WeatherUIImage.sprite = weatherUI[2];
+                break;
+            case WeatherData.WeatherType.HeavySnow:
+                WeatherUIImage.sprite =(weatherUI[3]);
+                break;
+            case WeatherData.WeatherType.Typhoon:
+                WeatherUIImage.sprite=(weatherUI[4]);
+                break;
+        }
     }
 
     public void OpenShop(List<ItemData> shopItems)

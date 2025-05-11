@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f6ee7486d54e054b9e53a5668121a10, type: 3}
+  m_Name: Pumpkin Italian Seed
+  m_EditorClassIdentifier: 
+  description: Seeds to grow pumpkin Italy
+  thumbnail: {fileID: 21300000, guid: 7c4352f05520a9148870583f04a75b8b, type: 3}
+  gameModel: {fileID: 0}
+  cost: 70
+  daysToGrow: 2
+  cropToYeild: {fileID: 11400000, guid: 81d7f4adf5a3452429afa40f04a9b6d9, type: 2}
+  seedling: {fileID: 2224554472447133642, guid: 5ce659ae5b94f184daa67edc15913213, type: 3}
+  regrowable: 0
+  daysToRegrow: 0

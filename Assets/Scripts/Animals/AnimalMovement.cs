@@ -41,6 +41,7 @@ public class AnimalMovement : CharacterMovement
             NavMeshHit hit;
             //Sample the nearest point on the NavMesh to ensure the animal moves on the surface
             NavMesh.SamplePosition(randomDirection, out hit, 10f, NavMesh.AllAreas);
+            Debug.Log($"Sampled position: {hit.position}");
             //Get the final destination
             Vector3 targetPos = hit.position;
             agent.SetDestination(targetPos);

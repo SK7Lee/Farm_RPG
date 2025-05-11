@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b654c714c07fe140aeb0ac6d8d4d1b4, type: 3}
+  m_Name: Frappe
+  m_EditorClassIdentifier: 
+  description: 'A cold, blended coffee drink with a frothy texture and refreshing
+    taste.  '
+  thumbnail: {fileID: 21300000, guid: 129e3dbf75439ea4b85dc6746a673ad9, type: 3}
+  gameModel: {fileID: 919132149155446097, guid: 0b44d5c2929776b44b4db4e9b4ccf5ce, type: 3}
+  cost: 200
+  staminaRestore: 30

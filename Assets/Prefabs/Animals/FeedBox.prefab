@@ -127,6 +127,8 @@ MonoBehaviour:
   onInteract:
     m_PersistentCalls:
       m_Calls: []
+  interactText: Interact
+  offset: 1.5
   displayFeed: {fileID: 5829412003340705794}
   id: 0
 --- !u!1 &5829412003340705794

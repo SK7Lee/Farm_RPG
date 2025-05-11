@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b654c714c07fe140aeb0ac6d8d4d1b4, type: 3}
+  m_Name: Sandwich
+  m_EditorClassIdentifier: 
+  description: Fresh bread filled with local ingredient. A satisfying lunch option.
+  thumbnail: {fileID: 21300000, guid: 89d141a2429721f4d8e907e85888155c, type: 3}
+  gameModel: {fileID: 919132149155446097, guid: 60084b398f12bb041bbc000aa24a6489, type: 3}
+  cost: 400
+  staminaRestore: 15

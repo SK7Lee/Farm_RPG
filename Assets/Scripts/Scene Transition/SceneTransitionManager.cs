@@ -16,12 +16,12 @@ public class SceneTransitionManager : MonoBehaviour
     //the scenes the player can be in
     public enum Location
     {
-        Farm, Town, PlayerHome, ChickenCoop, Forest, YodelRanch 
+        Farm, Town, PlayerHome, ChickenCoop, Forest, YodelRanch, Inn 
     }
     public Location currentLocation;
 
     //list of all indoor locations
-    static readonly Location[] indoor = {Location.PlayerHome, Location.ChickenCoop, Location.YodelRanch };
+    static readonly Location[] indoor = {Location.PlayerHome, Location.ChickenCoop, Location.YodelRanch, Location.Inn };
     // transform of the player
     Transform playerPoint;
 
@@ -44,7 +44,7 @@ public class SceneTransitionManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        SceneManager.sceneLoaded += OnLoactionLoad;
+        SceneManager.sceneLoaded += OnLocationLoad;
 
         //Find player transform
         playerPoint = FindAnyObjectByType<PlayerController>().transform;
@@ -86,7 +86,7 @@ public class SceneTransitionManager : MonoBehaviour
     }
 
     //Called when a scene is loaded
-    public void OnLoactionLoad(Scene scene, LoadSceneMode mode)
+    public void OnLocationLoad(Scene scene, LoadSceneMode mode)
     {
         Location oldLocation = currentLocation;
         Location newLocation =(Location) Enum.Parse(typeof(Location), scene.name);

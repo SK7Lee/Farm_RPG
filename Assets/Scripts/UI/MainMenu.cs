@@ -11,6 +11,8 @@ public class MainMenu : MonoBehaviour
     public void NewGame()
     {
         StartCoroutine(LoadGameAsync(SceneTransitionManager.Location.PlayerHome, null));
+        PlayerStats.LoadStats(1000, 150);
+
     }
 
     public void ContinueGame()

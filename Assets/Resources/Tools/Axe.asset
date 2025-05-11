@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Axe
   m_EditorClassIdentifier: 
   description: For clearing wood obstacles
-  thumbnail: {fileID: -878984416, guid: 2b9d0ca97845ca64ea739c5f63035e11, type: 3}
-  gameModel: {fileID: 0}
+  thumbnail: {fileID: 21300000, guid: 8e1a28a86a402ba4c938553da491b8ea, type: 3}
+  gameModel: {fileID: 620148634223822294, guid: 7d5d1a4171acddc4ea812f8a0bf6be1d, type: 3}
+  cost: 0
   toolType: 2

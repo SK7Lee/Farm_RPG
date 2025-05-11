@@ -26,7 +26,7 @@ MonoBehaviour:
     factorDate: 0
     ignoreDayOfTheWeek: 1
     location: 1
-    coord: {x: -6.3, y: 1.150637, z: 23.13}
+    coord: {x: -6.715, y: 1.016, z: 21.246}
     facing: {x: 0, y: 213.214}
   - name: Regular Work Day - Before Work
     time:
@@ -40,8 +40,8 @@ MonoBehaviour:
     factorDate: 0
     ignoreDayOfTheWeek: 1
     location: 1
-    coord: {x: -6.09, y: 1.150637, z: 23.13}
-    facing: {x: 0, y: 180}
+    coord: {x: -6.715, y: 1.016, z: 21.246}
+    facing: {x: 0, y: 213.214}
   - name: Regular Work Day - Store
     time:
       year: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
     factorDate: 0
     ignoreDayOfTheWeek: 1
     location: 1
-    coord: {x: -6.09, y: 1.150637, z: 6.8}
+    coord: {x: -6.715, y: 1.016, z: 21.246}
     facing: {x: 0, y: 213.214}
   - name: Tuesday 8-5
     time:
@@ -82,7 +82,7 @@ MonoBehaviour:
     factorDate: 0
     ignoreDayOfTheWeek: 0
     location: 1
-    coord: {x: -6.3, y: 1.150637, z: 23.13}
+    coord: {x: -6.715, y: 1.016, z: 21.246}
     facing: {x: 0, y: 213.214}
   - name: Sunday 8-5
     time:
@@ -96,5 +96,5 @@ MonoBehaviour:
     factorDate: 0
     ignoreDayOfTheWeek: 0
     location: 1
-    coord: {x: -6.3, y: 1.150637, z: 23.13}
+    coord: {x: -6.715, y: 1.016, z: 21.246}
     facing: {x: 0, y: 213.214}

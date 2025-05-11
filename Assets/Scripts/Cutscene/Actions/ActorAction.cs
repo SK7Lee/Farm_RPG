@@ -16,6 +16,7 @@ public class ActorAction : CutsceneAction
     public string actorName;
     public Vector3 position;
 
+    
     public override void Execute()
     {
         Debug.Log("Cutscene: Executing actor action");
@@ -29,16 +30,17 @@ public class ActorAction : CutsceneAction
         CreateOrMove();
 
     }
-
+    
     //Handles the creation or moving of the actor
     void CreateOrMove()
     {
+        Debug.Log("add actor");
         CutsceneManager.Instance.AddOrMoveActor(actorName, position, onExecutionComplete);
     }
     //Handles the removal of the actor
     void Remove()
     {
-
+        CutsceneManager.Instance.RemoveActor(actorName);    
     }
 
 }

@@ -61,6 +61,7 @@ public class CutsceneManager : MonoBehaviour
         player = FindAnyObjectByType<PlayerController>();
         player.enabled = false;
         player.GetComponent<CharacterController>().enabled = false;
+        player.GetComponent<Animator>()?.SetFloat("Speed", 0f);
 
 
         NPCManager.Instance.Pause();
@@ -104,6 +105,7 @@ public class CutsceneManager : MonoBehaviour
         player.gameObject.SetActive(true);
         player.enabled = true;
         player.GetComponent<CharacterController>().enabled = true;
+        player.GetComponent<Animator>()?.SetFloat("Speed", 4f);
 
 
         NPCManager.Instance.Continue();
@@ -111,6 +113,20 @@ public class CutsceneManager : MonoBehaviour
         onCutsceneStop?.Invoke();
 
     }
+
+    public void RemoveActor(string actor)
+    {
+        if (actors.ContainsKey(actor))
+        {
+            GameObject actorGameObject = actors[actor].gameObject;
+            actors.Remove(actor);
+            if (actorGameObject != null)
+            {
+                Destroy(actorGameObject);
+            }
+        }
+    }
+
 
     void ClearActors()
     {

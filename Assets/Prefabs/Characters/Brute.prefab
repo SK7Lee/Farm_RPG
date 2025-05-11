@@ -1143,7 +1143,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactText: Talk
-  offset: 1.5
+  offset: 2
   characterData: {fileID: 11400000, guid: 06866dcdfcc785140af9c4f5e62a21b0, type: 2}
 --- !u!195 &-6585306815834011174
 NavMeshAgent:

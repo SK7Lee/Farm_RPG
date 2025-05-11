@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b654c714c07fe140aeb0ac6d8d4d1b4, type: 3}
+  m_Name: Riceball
+  m_EditorClassIdentifier: 
+  description: Simple but filling rice shaped into an easy to eat ball. A traveler's
+    friend.
+  thumbnail: {fileID: 21300000, guid: c14d56b6f67f909439cd99836774bffc, type: 3}
+  gameModel: {fileID: 919132149155446097, guid: f59db4ff52d94064fbd28cf28ef2fe62, type: 3}
+  cost: 400
+  staminaRestore: 12

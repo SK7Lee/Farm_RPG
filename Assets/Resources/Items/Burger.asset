@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b654c714c07fe140aeb0ac6d8d4d1b4, type: 3}
+  m_Name: Burger
+  m_EditorClassIdentifier: 
+  description: A juicy burger with a grilled patty, fresh veggies, and a soft bun.
+  thumbnail: {fileID: 21300000, guid: e9dd39aec09942f40a914be423259247, type: 3}
+  gameModel: {fileID: 919132149155446097, guid: cd704e5dcd79c8449a1cb9ae32ccad94, type: 3}
+  cost: 300
+  staminaRestore: 30

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Pickaxe
   m_EditorClassIdentifier: 
   description: For clearing rock obstacles
-  thumbnail: {fileID: 2127643943, guid: 2b9d0ca97845ca64ea739c5f63035e11, type: 3}
-  gameModel: {fileID: 0}
+  thumbnail: {fileID: 21300000, guid: 0baa25878be8ac94eba2a626eef2bcc4, type: 3}
+  gameModel: {fileID: 776738871549481813, guid: fbc410ace36e229489e8300a9826d277, type: 3}
+  cost: 0
   toolType: 3

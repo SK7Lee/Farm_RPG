@@ -16,6 +16,13 @@ public class InteractableObject : MonoBehaviour
     {
         //call the onInteract event
         onInteract?.Invoke();
+
+        //check if the player is holding on to an item
+        if (InventoryManager.Instance.SlotEquipped(InventorySlot.InventoryType.Item))
+        {
+            //send the item to inventory before equippind
+            InventoryManager.Instance.HandToInventory(InventorySlot.InventoryType.Item);
+        }
         //set the player's inventory to the item
         InventoryManager.Instance.EquipHandSlot(item);
         //update the changes in scene

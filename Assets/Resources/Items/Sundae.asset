@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b654c714c07fe140aeb0ac6d8d4d1b4, type: 3}
+  m_Name: Sundae
+  m_EditorClassIdentifier: 
+  description: A creamy, indulgent dessert with ice cream, toppings, and syrup.
+  thumbnail: {fileID: 21300000, guid: 3e8314098619ee54a870c45b0170e460, type: 3}
+  gameModel: {fileID: 919132149155446097, guid: 4c95cc29bf6b598418100a50585749c6, type: 3}
+  cost: 400
+  staminaRestore: 20

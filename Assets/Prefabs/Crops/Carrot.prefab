@@ -105,6 +105,8 @@ MonoBehaviour:
   onInteract:
     m_PersistentCalls:
       m_Calls: []
+  interactText: Pick Up
+  offset: 1.5
 --- !u!64 &7678883875123152329
 MeshCollider:
   m_ObjectHideFlags: 0

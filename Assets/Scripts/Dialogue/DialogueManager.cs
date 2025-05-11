@@ -2,6 +2,8 @@ using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +20,8 @@ public class DialogueManager : MonoBehaviour
     Action onDialogueEnd = null;
     bool isTyping = false;
 
+    //implement a proper player control stop mechanism
+    PlayerController playerController;
 
     private void Awake()
     {
@@ -41,11 +45,22 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(TypeText(message));
     }
 
+    private void Start()
+    {
+        playerController = FindFirstObjectByType<PlayerController>();
+    }
+
     //initiate the dialogue with a queue of dialogue lines
     public void StartDialogue(List<DialogueLine> dialogueLinesToQueue)
     {
 
         dialogueQueue = new Queue<DialogueLine>(dialogueLinesToQueue);
+        
+        if (playerController != null)
+        {
+            playerController.enabled = false;
+        }
+        
         UpdateDialogue();
     }
 
@@ -72,12 +87,18 @@ public class DialogueManager : MonoBehaviour
             return;
         }
         DialogueLine line = dialogueQueue.Dequeue();
-        Talk(line.speaker, line.message);   
+        Talk(line.speaker, ParseVariables(line.message));   
     }
 
     public void EndDialogue()
     {
         dialoguePanel.SetActive(false);
+
+        if (playerController != null)
+        {
+            playerController.enabled = true;
+        }
+
         onDialogueEnd?.Invoke();
         onDialogueEnd = null;
     }
@@ -129,5 +150,39 @@ public class DialogueManager : MonoBehaviour
         }
         return dialogueToExcute;
     }
+
+
+    /// <param name="message">the string to pass in </param>
+    string ParseVariables(string message)
+    {
+        if (GameStateManager.Instance != null)
+        {
+            //get the blackboard
+            GameBlackboard blackboard = GameStateManager.Instance.GetBlackboard();
+
+            if (blackboard != null)
+            {
+                //look for strings enclosed with {}
+                string pattern = @"\{([^}]+?)\}";
+                //regex replacement step
+                message = Regex.Replace(message, pattern, match =>
+                {
+                    //the variable name enclosed in the "{}"
+                    string variableName = match.Groups[1].Value;
+
+                    //if there is a string value, return it
+                    if (blackboard.TryGetValueAsString(variableName, out string strValue))
+                    {
+                        return strValue;
+                    }
+                    //nothing found, so nothing is returned
+                    return "";
+                });
+            }
+        }
+        return message;
+    }
+
+
 
 }

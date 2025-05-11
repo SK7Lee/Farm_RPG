@@ -247,6 +247,8 @@ MonoBehaviour:
   onInteract:
     m_PersistentCalls:
       m_Calls: []
+  interactText: Interact
+  offset: 1.5
   speechBubble: {fileID: 9210296360617304986}
 --- !u!114 &3355355770797982446
 MonoBehaviour:

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Shovel
   m_EditorClassIdentifier: 
   description: Clear plant materials
-  thumbnail: {fileID: -215040055, guid: 2b9d0ca97845ca64ea739c5f63035e11, type: 3}
-  gameModel: {fileID: 0}
+  thumbnail: {fileID: 21300000, guid: 9eebf6b7e73ba6e4a87fa932afc20395, type: 3}
+  gameModel: {fileID: 286042565366476606, guid: eaed65279fd81d546b708c53115dede3, type: 3}
+  cost: 0
   toolType: 4

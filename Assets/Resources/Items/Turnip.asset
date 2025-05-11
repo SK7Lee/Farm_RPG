@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: A round root vegetable with white flesh
   thumbnail: {fileID: 21300000, guid: 2d01ea8eb59bfbc4cb96079b17032172, type: 3}
-  gameModel: {fileID: 0}
-  cost: 0
+  gameModel: {fileID: 3999229030691550235, guid: 0610b947d10ed604d8767835543cb629, type: 3}
+  cost: 200

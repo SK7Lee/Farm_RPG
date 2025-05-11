@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Hoe
   m_EditorClassIdentifier: 
   description: For tilling the land
-  thumbnail: {fileID: -461957152, guid: 2b9d0ca97845ca64ea739c5f63035e11, type: 3}
-  gameModel: {fileID: 0}
+  thumbnail: {fileID: 21300000, guid: 162f3752eb53e704886825353232d246, type: 3}
+  gameModel: {fileID: 1338678696756496219, guid: 2814fec231939bf4091878da5681bc7a, type: 3}
+  cost: 0
   toolType: 0

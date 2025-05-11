@@ -13,9 +13,10 @@ public class LocationManager : MonoBehaviour
     {
         {Location.PlayerHome, new List<Location>{Location.Farm} },
         {Location.Farm, new List<Location>{Location.PlayerHome, Location.Town} } ,
-        {Location.Town, new List<Location>{Location.Farm, Location.Forest, Location.YodelRanch} },
+        {Location.Town, new List<Location>{Location.Farm, Location.Forest, Location.YodelRanch, Location.Inn} },
         {Location.Forest, new List<Location>{Location.Town} },
         {Location.YodelRanch, new List<Location>{Location.Town} },
+        {Location.Inn, new List<Location>{Location.Town} },
     };
     private void Awake()
     {
@@ -38,7 +39,17 @@ public class LocationManager : MonoBehaviour
     public Transform GetExitPosition(Location exitingTo)
     {
         Transform startPoint = GetPlayerStartingPosition(exitingTo);
-        return startPoint.parent.GetComponentInChildren<LocationEntryPoint>().transform;
+        if (startPoint == null)
+        {
+            throw new System.Exception($"Failed to GetExitPos: could not find startPoint for location {exitingTo}");
+        }
+
+        Transform point =  startPoint.parent.GetComponentInChildren<LocationEntryPoint>().transform;
+        if (point == null)
+        {
+            throw new System.Exception($"Failed to GetExitPos: could not get component of LocationEntryPoint {startPoint} for location {exitingTo}");
+        }
+        return point;
     }
 
     //get the next scene in the traversal path

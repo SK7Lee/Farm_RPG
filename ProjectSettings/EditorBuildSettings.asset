@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/YodelRanch.unity
     guid: 7d73589741c5a3541bb27e57391d380f
+  - enabled: 1
+    path: Assets/Scenes/Inn.unity
+    guid: 64e806d6d4125fa4a81844fdb43724e7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

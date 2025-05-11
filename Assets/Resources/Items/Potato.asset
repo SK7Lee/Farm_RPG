@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: A starchy root vegetable
   thumbnail: {fileID: 21300000, guid: abcf1ee553581a84cb3e16e5eef48336, type: 3}
-  gameModel: {fileID: 3411735870231464610, guid: 60cfbc486c5deac40bcc66b84fd96428, type: 3}
+  gameModel: {fileID: 680468100467690420, guid: 113b5f73aa4850a4183be0e57a1956da, type: 3}
   cost: 250

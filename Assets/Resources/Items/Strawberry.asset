@@ -15,4 +15,4 @@ MonoBehaviour:
   description: A small red fruit with seeds outside
   thumbnail: {fileID: 21300000, guid: 2fd8c823ae86fb249bfc44255478a7fb, type: 3}
   gameModel: {fileID: 0}
-  cost: 0
+  cost: 100
